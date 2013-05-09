@@ -1,0 +1,43 @@
+body {
+padding: 0 20px;
+font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+font-size: 26px;
+}
+
+a {
+color: #00B7FF;
+}
+
+.welcome {
+border-bottom: 1px solid #888;
+padding-bottom: 8px;
+}
+
+.title {
+font-size: 42px;
+color: #c03669;
+}
+
+.main ul {
+	list-style: none;
+	margin-top: 20px;
+	padding: 0;
+}
+
+.main li {
+	margin: 12px 0;
+	color: #fff;
+	background-color: #36afe2;
+	border-radius: 4px;
+	padding: 9px 10px;
+	font-weight: bold;
+	font-family: arial;
+	cursor: pointer;
+}
+
+.main li:hover {
+color: #333;
+}

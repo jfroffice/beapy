@@ -1,0 +1,11 @@
+{
+	"name": "beapy",
+	"version": "0.1.0",
+	"dependencies": {
+		"jquery": "*",
+		"history.js": "*",
+		"handlebars.js": "lastest",
+		"marked": "*",
+		"prism": "*"
+	}
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beapy - Simple Blog Engine</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/components/prism/prism.css" rel="stylesheet" />
+    <script src="http://127.0.0.1:35729/livereload.js"></script>
+    <script id="md-files-template" type="text/x-handlebars-template">
+      <ul>{{#files}}<li class="md">{{name}}</li>{{/files}}</ul>
+    </script>
+  </head>
+  <body>
+    <section class="welcome">
+      <h1 class="title">Beapy</h1>
+      <p>Welcome to a Simple Blog Engine.</p>
+      <nav class="main"></nav>
+    </section>
+    <section class="content">
+      <article class="current">
+      </article>
+    </section>
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/handlebars.js/dist/handlebars.js"></script>
+    <script src="components/marked/lib/marked.js"></script>
+    <script src="components/prism/prism.js"></script>
+    <script src="components/history.js/scripts/uncompressed/history.js"></script>
+    <script src="components/history.js/scripts/uncompressed/history.adapter.jquery.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
+
