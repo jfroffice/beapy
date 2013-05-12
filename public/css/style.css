@@ -1,6 +1,8 @@
 body {
 padding: 0 20px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+width: 800px;
+margin: 0 auto;
 }
 
 h1 {
@@ -40,4 +42,8 @@ color: #c03669;
 
 .main li:hover {
 color: #333;
+}
+
+.comment {
+margin-top: 40px;
 }
