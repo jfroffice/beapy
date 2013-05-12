@@ -31,7 +31,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', function(req, res) {
 	res.render('index', {
-		title: 'Express'
+		github: 'jfroffice',
+		env: app.get('env')
 	});
 });
 
