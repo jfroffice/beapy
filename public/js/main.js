@@ -37,7 +37,7 @@
 	}
 
 	var state = History.getState();
-	if (state && state.data) {
+	if (state && state.data && state.data.state) {
 		load(state.data.state);
 	}
 
