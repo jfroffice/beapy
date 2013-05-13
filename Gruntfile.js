@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             css: {
                 src: ['public/css/style.css',
                     '/components/prism/prism.css'],
-                dest: 'public/css/<%= pkg.name %>.css'
+                dest: 'public/dist/<%= pkg.name %>.css'
             },
             dist: {
                 src: ['public/components/jquery/jquery.js',
@@ -20,20 +20,20 @@ module.exports = function(grunt) {
                     'public/components/history.js/scripts/uncompressed/history.js',
                     'public/components/history.js/scripts/uncompressed/history.adapter.jquery.js',
                     'public/js/main.js'],
-                dest: 'public/js/<%= pkg.name %>.js'
+                dest: 'public/dist/<%= pkg.name %>.js'
             }
         },
         uglify: {
             my_target: {
                 files: {
-                    'public/js/<%= pkg.name %>.min.js': ['public/js/<%= pkg.name %>.js']
+                    'public/dist/<%= pkg.name %>.min.js': ['public/dist/<%= pkg.name %>.js']
                 }
             }
         },
         cssmin: {
             css: {
-                src: ['public/css/<%= pkg.name %>.css'],
-                dest: 'public/css/<%= pkg.name %>.min.css'
+                src: ['public/dist/<%= pkg.name %>.css'],
+                dest: 'public/dist/<%= pkg.name %>.min.css'
             }
         },
         lint: {

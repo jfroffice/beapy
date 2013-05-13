@@ -1,6 +1,3 @@
 node_modules/
 public/components/
-public/js/beapy.js
-public/js/beapy.min.js
-public/css/beapy.css
-public/css/beapy.min.css
+public/dist/
