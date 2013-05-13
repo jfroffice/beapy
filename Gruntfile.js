@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         concat: {
             css: {
                 src: ['public/css/style.css',
-                    '/components/prism/prism.css'],
+                    'public/components/prism/prism.css'],
                 dest: 'public/dist/<%= pkg.name %>.css'
             },
             dist: {
