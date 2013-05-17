@@ -35,6 +35,10 @@ float: left;
 width: 65%;
 }
 
+.body {
+display: inline-block;
+}
+
 .sidebar {
 float: left;
 width: 30%;

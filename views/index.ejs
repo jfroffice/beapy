@@ -14,34 +14,37 @@
     </script>
 </head>
 <body>
-  <section class="header">
-    <h1 class="title">Beapy</h1>
-    <p>Welcome to a Simple Blog Engine.</p>
-  </section>
-  <section class="body">
-    <section class="content">
-      <article class="current"></article>
+  <div class="page">
+    <section class="header">
+      <h1 class="title">Beapy</h1>
+      <p>Welcome to a Simple Blog Engine.</p>
     </section>
-    <section class="sidebar">
-      <nav class="main"></nav>
+    <section class="body">
+      <section class="content">
+        <article class="current"></article>
+      </section>
+      <section class="sidebar">
+        <nav class="main"></nav>
+      </section>
     </section>
-  </section>
-  <section class="comment">
-    <% if (env !== 'development') { %>
-    <div id="disqus_thread"></div>
-    <script>
-         var disqus_shortname = '<%= github %>';
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+    <section class="comment">
+      <% if (env !== 'development') { %>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_shortname = '<%= github %>';
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
       </script>
-    <a href="http://disqus.com" class="dsq-brlink">
-      comments powered by
-      <span class="logo-disqus">Disqus</span>
-    </a>
-    <% } %></section>
+      <a href="http://disqus.com" class="dsq-brlink">
+        comments powered by
+        <span class="logo-disqus">Disqus</span>
+      </a>
+      <% } %>
+    </section>
+  </div>
   <% if (env === 'development') { %>
   <script src="components/jquery/jquery.js"></script>
   <script src="components/handlebars.js/dist/handlebars.js"></script>
