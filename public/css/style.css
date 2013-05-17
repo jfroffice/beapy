@@ -20,7 +20,7 @@ a {
 color: #00B7FF;
 }
 
-.welcome {
+.header {
 border-bottom: 1px solid #888;
 padding-bottom: 8px;
 }
@@ -28,6 +28,17 @@ padding-bottom: 8px;
 .title {
 font-size: 42px;
 color: #c03669;
+}
+
+.content {
+float: left;
+width: 65%;
+}
+
+.sidebar {
+float: left;
+width: 30%;
+margin-left: 40px;
 }
 
 .main ul {
