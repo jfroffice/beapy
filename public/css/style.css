@@ -2,10 +2,10 @@ html {
 background: #eee;
 }
 
-body {
+.page {
 padding: 0 20px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-width: 960px;
+width: 950px;
 margin: 0 auto;
 border: 1px solid #DDD;
 box-shadow: 0px 0px 8px #DDD;
@@ -40,10 +40,11 @@ display: inline-block;
 }
 
 .sidebar {
-float: left;
+float: right;
 width: 30%;
 margin-left: 40px;
 margin-top: 10px;
+min-width: 250px;
 }
 
 .main ul {
