@@ -2,10 +2,10 @@ html {
 background: #eee;
 }
 
-body {
+.page {
 padding: 0 20px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-width: 960px;
+width: 950px;
 margin: 0 auto;
 border: 1px solid #DDD;
 box-shadow: 0 0 8px #DDD;
@@ -20,7 +20,7 @@ a {
 color: #00B7FF;
 }
 
-.welcome {
+.header {
 border-bottom: 1px solid #888;
 padding-bottom: 8px;
 }
@@ -28,6 +28,23 @@ padding-bottom: 8px;
 .title {
 font-size: 42px;
 color: #c03669;
+}
+
+.content {
+float: left;
+width: 65%;
+}
+
+.body {
+display: inline-block;
+}
+
+.sidebar {
+float: right;
+width: 30%;
+margin-left: 40px;
+margin-top: 10px;
+min-width: 250px;
 }
 
 .main ul {
