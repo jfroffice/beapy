@@ -9,8 +9,19 @@
 			History.pushState({
 				state: url
 			}, url, "?article=" + url);
+
 			$('article.current').html(marked(data));
 			Prism.highlightAll();
+
+			if (DISQUS) {
+				DISQUS.reset({
+				  reload: true,
+				  config: function () {
+				    this.page.identifier = url;
+				    this.page.url = window.location.href;
+				  }
+				});
+			}
 		});
 	}
 
