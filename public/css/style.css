@@ -3,7 +3,7 @@ background: #eee;
 }
 
 .page {
-padding: 0 20px;
+padding: 0 30px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 width: 960px;
 margin: 0 auto;
@@ -29,41 +29,56 @@ display: inline-block;
 
 .article {
 float: left;
-width: 69%;
+width: 67%;
 /*min-height: 400px;*/
 }
 
 .sidebar {
 float: right;
-width: 28%;
+width: 31%;
 margin-left: 10px;
 margin-top: 10px;
 min-width: 250px;
 }
 
-.sidebar .menu ul {
+.sidebar nav ul {
 list-style: none;
 margin-top: 20px;
 padding: 0;
 }
 
-.sidebar .menu li {
+.sidebar nav li {
 margin: 12px 0;
 color: #fff;
-background-color: #36afe2;
-border-radius: 4px;
 padding: 9px 10px;
 font-weight: bold;
 font-family: arial;
 cursor: pointer;
 }
 
-.sidebar .menu li:hover {
+.sidebar nav li span {
+border-radius: 2px;
+padding: 9px 12px;
+}
+
+.sidebar nav li span:hover {
 color: #333;
 }
 
 a {
 color: #00B7FF;
+}
+
+.sidebar nav.menu span {
+background-color: #36afe2;
+}
+
+.sidebar nav.tags {
+margin-top: 40px;
+}
+
+.sidebar nav.tags span {
+background-color: #68c241;
 }
 
 .comment {

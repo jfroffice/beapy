@@ -1,12 +1,6 @@
 (function(window, undefined) {
 
 	marked.setOptions({
-		/*gfm: true,
-		tables: true,
-		breaks: false,
-		pedantic: false,
-		sanitize: true,
-		smartLists: true,*/
 		langPrefix: 'language-'
 	});
 
@@ -20,15 +14,20 @@
 		});
 	}
 
-	var source = $("#md-files-template").html();
+	var tFiles = Handlebars.compile($("#md-files-template").html()),
+		tTags = Handlebars.compile($("#md-tags-template").html());
 
-	$.get('./md', function(data) {
-		var template = Handlebars.compile(source);
-		$('.menu').html(template(data));
+	$.get('./json', function(files) {
+
+		console.log(files);
+		$('.menu').html(tFiles({ files: files }));
 
 		$('.md').on('click', function() {
-			load($(this).html());
+			load($(this).data('name'));
 		});
+
+		var tags = _.flatten(_.map(files, function(e) { return e.data.tags; }))
+		$('.tags').html(tTags({ tags: tags }));
 	});
 
 	var History = window.History;

@@ -13,8 +13,6 @@ exports.list = function(req, res) {
 			data: require(path.join(root, data.name))
 		});
 	}).on('end', function() {
-		res.send({
-			files: files
-		});
+		res.send(files);
 	});
 };

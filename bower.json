@@ -7,6 +7,7 @@
     "handlebars.js": "lastest",
     "marked": "*",
     "prism": "*",
-    "normalize-css": "~2.1.2"
+    "normalize-css": "~2.1.2",
+    "lodash": "~1.2.1"
   }
 }
