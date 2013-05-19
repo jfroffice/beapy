@@ -1,5 +1,6 @@
 var path = require("path"),
 	readdirp = require('readdirp'),
+	_ = require('lodash'),
 	root = path.join(__dirname, '../public/md');
 
 exports.list = function(req, res) {
@@ -13,6 +14,13 @@ exports.list = function(req, res) {
 			data: require(path.join(root, data.name))
 		});
 	}).on('end', function() {
+
+		// filter on published state
+		files = _.filter(files, function(e) {
+			console.log(e.data.state);
+			return e.data.state == 'published';
+		});
+
 		res.send(files);
 	});
 };
