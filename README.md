@@ -2,6 +2,20 @@ Beapy
 =====
 single-page blog engine rendering markdown file
 
+Install
+-------
+```
+npm install
+bower install
+```
+
+Starting
+--------
+```
+grunt
+node app.js
+```
+
 Powered by
 ----------
 - [jquery](https://github.com/jquery/jquery)
