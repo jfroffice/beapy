@@ -1,7 +1,9 @@
 Beapy
 =====
-single-page blog engine rendering markdown file :
+single-page blog engine rendering markdown file
 
+Powered by
+----------
 - [jquery](https://github.com/jquery/jquery)
 - [normalize.css](https://github.com/necolas/normalize.css/)
 - [history.js](https://github.com/browserstate/history.js) (to handle state on single page)
