@@ -17,7 +17,6 @@ exports.list = function(req, res) {
 
 		// filter on published state
 		files = _.filter(files, function(e) {
-			console.log(e.data.state);
 			return e.data.state == 'published';
 		});
 

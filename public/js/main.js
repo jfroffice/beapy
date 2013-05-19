@@ -1,4 +1,7 @@
-(function(window, undefined) {
+(function(global, undefined) {
+
+	var tFiles = Handlebars.compile($("#md-files-template").html()),
+		tTags = Handlebars.compile($("#md-tags-template").html());
 
 	marked.setOptions({
 		langPrefix: 'language-'
@@ -13,20 +16,17 @@
 			$('article.current').html(marked(data));
 			Prism.highlightAll();
 
-			if (DISQUS) {
-				DISQUS.reset({
-				  reload: true,
-				  config: function () {
-				    this.page.identifier = url;
-				    this.page.url = window.location.href;
-				  }
+			if (global.DISQUS) {
+				global.DISQUS.reset({
+					reload: true,
+					config: function () {
+						this.page.identifier = url;
+						this.page.url = window.location.href;
+					}
 				});
 			}
 		});
 	}
-
-	var tFiles = Handlebars.compile($("#md-files-template").html()),
-		tTags = Handlebars.compile($("#md-tags-template").html());
 
 	$.get('./json', function(files) {
 
@@ -40,8 +40,9 @@
 			load($(this).data('name'));
 		});
 
-		var tags = _.flatten(_.map(files, function(e) { return e.data.tags; }))
-		$('.tags').html(tTags({ tags: tags }));
+		$('.tags').html(tTags({
+			tags: _.flatten(_.map(files, function(e) { return e.data.tags; }))
+		}));
 	});
 
 	var History = window.History;
