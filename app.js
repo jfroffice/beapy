@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.get('/md', md.list);
+/*app.get('/md', md.list);*/
 app.get('/json', json.list);
 
 http.createServer(app).listen(app.get('port'), function() {

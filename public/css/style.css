@@ -5,7 +5,7 @@ background: #eee;
 .page {
 padding: 0 30px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-width: 960px;
+width: 900px;
 margin: 0 auto;
 border: 1px solid #DDD;
 box-shadow: 0 0 8px #DDD;
@@ -29,15 +29,14 @@ display: inline-block;
 
 .article {
 float: left;
-width: 67%;
+width: 65%;
 /*min-height: 400px;*/
 }
 
 .sidebar {
 float: right;
-width: 31%;
+width: 33%;
 margin-left: 10px;
-margin-top: 10px;
 min-width: 250px;
 }
 
@@ -82,5 +81,5 @@ background-color: #68c241;
 }
 
 .comment {
-margin-top: 40px;
+margin: 40px 0;
 }

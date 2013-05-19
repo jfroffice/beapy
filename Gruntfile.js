@@ -15,6 +15,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: ['public/components/jquery/jquery.js',
+                      'public/components/lodash/lodash.js',
                     'public/components/handlebars.js/dist/handlebars.js',
                     'public/components/marked/lib/marked.js',
                     'public/components/prism/prism.js',
