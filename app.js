@@ -5,7 +5,6 @@
 var express = require('express'),
 	http = require('http'),
 	livereload = require('express-livereload'),
-	md = require('./service/md'),
 	json = require('./service/json'),
 	path = require('path');
 
@@ -37,7 +36,6 @@ app.get('/', function(req, res) {
 	});
 });
 
-/*app.get('/md', md.list);*/
 app.get('/json', json.list);
 
 http.createServer(app).listen(app.get('port'), function() {
