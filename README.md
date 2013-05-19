@@ -1,11 +1,11 @@
 Beapy
 =====
-simple blog engine using markdown file, prism code highlight
+single-page blog engine rendering markdown file :
 
-Powered by
-----------
 - [jquery](https://github.com/jquery/jquery)
-- [marked](https://github.com/chjj/marked)
-- [history.js](https://github.com/browserstate/history.js)
-- [prism](https://github.com/LeaVerou/prism)
+- [normalize.css](https://github.com/necolas/normalize.css/)
+- [history.js](https://github.com/browserstate/history.js) (to handle state on single page)
+- [lodash](https://github.com/bestiejs/lodash) (to filter data)
+- [marked](https://github.com/chjj/marked) (to render markdown file)
+- [prism](https://github.com/LeaVerou/prism) (to highlight code)
 - Disqus for comments
