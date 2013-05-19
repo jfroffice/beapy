@@ -19,8 +19,11 @@
 
 	$.get('./json', function(files) {
 
-		console.log(files);
 		$('.menu').html(tFiles({ files: files }));
+
+		if (files.length) {
+			load(files[0].name);
+		}
 
 		$('.md').on('click', function() {
 			load($(this).data('name'));
