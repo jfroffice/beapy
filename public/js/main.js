@@ -24,7 +24,7 @@
 
 	$.get('./md', function(data) {
 		var template = Handlebars.compile(source);
-		$('.main').html(template(data));
+		$('.menu').html(template(data));
 
 		$('.md').on('click', function() {
 			load($(this).html());

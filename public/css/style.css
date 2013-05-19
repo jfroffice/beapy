@@ -1,4 +1,4 @@
-html {
+body {
 background: #eee;
 }
 
@@ -12,14 +12,6 @@ box-shadow: 0px 0px 8px #DDD;
 background-color: #fff;
 }
 
-h1 {
-font-size: 26px;
-}
-
-a {
-color: #00B7FF;
-}
-
 .header {
 border-bottom: 1px solid #888;
 padding-bottom: 8px;
@@ -31,41 +23,47 @@ color: #c03669;
 }
 
 .content {
-float: left;
-width: 65%;
+width: 100%;
+display: inline-block;
 }
 
-.body {
-display: inline-block;
+.article {
+float: left;
+width: 69%;
+/*min-height: 400px;*/
 }
 
 .sidebar {
 float: right;
-width: 30%;
-margin-left: 40px;
+width: 28%;
+margin-left: 10px;
 margin-top: 10px;
 min-width: 250px;
 }
 
-.main ul {
-	list-style: none;
-	margin-top: 20px;
-	padding: 0;
+.sidebar .menu ul {
+list-style: none;
+margin-top: 20px;
+padding: 0;
 }
 
-.main li {
-	margin: 12px 0;
-	color: #fff;
-	background-color: #36afe2;
-	border-radius: 4px;
-	padding: 9px 10px;
-	font-weight: bold;
-	font-family: arial;
-	cursor: pointer;
+.sidebar .menu li {
+margin: 12px 0;
+color: #fff;
+background-color: #36afe2;
+border-radius: 4px;
+padding: 9px 10px;
+font-weight: bold;
+font-family: arial;
+cursor: pointer;
 }
 
-.main li:hover {
+.sidebar .menu li:hover {
 color: #333;
+}
+
+a {
+color: #00B7FF;
 }
 
 .comment {
