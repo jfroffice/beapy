@@ -3,7 +3,7 @@ var path = require("path"),
 	_ = require('lodash'),
 	root = path.join(__dirname, '../public/md');
 
-exports.list = function(req, res) {
+exports.browse = function(req, res) {
 	var files = [];
 	readdirp({
 		root: root,

@@ -5,7 +5,7 @@
 var express = require('express'),
 	http = require('http'),
 	livereload = require('express-livereload'),
-	json = require('./service/json'),
+	data = require('./service/data'),
 	path = require('path');
 
 var app = express();
@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.get('/json', json.list);
+app.get('/data', data.browse);
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port'));

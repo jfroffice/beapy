@@ -53,7 +53,7 @@
 
 	function init(name) {
 
-		$.get('./json', function(files) {
+		$.get('./data', function(files) {
 
 			$('.menu').html(tFiles({ files: files }));
 
@@ -78,10 +78,7 @@
 
 	var state = History.getState();
 	if (state && state.data && state.data.state) {
-
 		init(state.data.state);
-		//alert('should find the good element');
-		/*load(state.data.state);*/
 	} else {
 		init();
 	}
