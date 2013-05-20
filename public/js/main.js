@@ -1,4 +1,4 @@
-(function(global, $, _, Handlebars, marked, Prism, undefined) {
+(function(global, $, _, Handlebars, marked, Prism, moment, undefined) {
 
     var tFiles = Handlebars.compile($("#md-files-template").html()),
         tHeader = Handlebars.compile($("#md-header-template").html()),
@@ -8,7 +8,7 @@
         langPrefix: 'language-'
     });
 
-   function updateComment(name) {
+    function updateComment(name) {
         if (global.DISQUS) {
             global.DISQUS.reset({
                 reload: true,
@@ -18,7 +18,7 @@
                 }
             });
         }
-   }
+    }
 
     function load($elm, name, callback) {
         // show old element
@@ -37,8 +37,10 @@
             name = $('.md').first().data('name');
         }
 
-    	var dataFiles = _.filter(files, { name: name })[0].data;
-        var $elm = $('.md[data-name="' + name + '"]');
+        var dataFiles = _.filter(files, {
+            name: name
+        })[0].data,
+            $elm = $('.md[data-name="' + name + '"]');
 
         load($elm, name, function(data) {
 
@@ -74,7 +76,7 @@
 
             loadArticle(files, name);
 
-           /* $('.tags').html(tTags({
+            /* $('.tags').html(tTags({
                 tags: _.flatten(_.map(files, function(e) {
                     return e.data.tags;
                 }))
@@ -101,4 +103,4 @@
     // depend on current lang
     moment.lang('fr');
 
-})(window, window.jQuery, window._, window.Handlebars, window.marked, window.Prism);
+})(window, window.jQuery, window._, window.Handlebars, window.marked, window.Prism, window.moment);
