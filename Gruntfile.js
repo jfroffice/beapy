@@ -54,19 +54,26 @@ module.exports = function(grunt) {
                 browser: true
             }
         },
+        jsbeautifier: {
+          files : ['public/js/*.js']
+        },
         express: {
             server: 'app'
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-jsbeautifier');
+
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-express');
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('format', ['jshint', 'jsbeautifier']);
+
+    grunt.registerTask('default', ['format', 'concat', 'uglify', 'cssmin']);
 
     grunt.registerTask('server', ['express']);
 };
