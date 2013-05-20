@@ -74,11 +74,11 @@
 
             loadArticle(files, name);
 
-            $('.tags').html(tTags({
+           /* $('.tags').html(tTags({
                 tags: _.flatten(_.map(files, function(e) {
                     return e.data.tags;
                 }))
-            }));
+            }));*/
         });
     }
 
