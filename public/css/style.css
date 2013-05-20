@@ -47,7 +47,7 @@ padding: 0;
 
 .sidebar nav li {
 margin: 12px 0;
-color: #fff;
+color: #EAEAEA;
 padding: 9px 10px;
 font-weight: bold;
 font-family: arial;
@@ -64,7 +64,7 @@ padding: 9px 12px;
 }
 
 .sidebar nav li span:hover {
-color: #333;
+color: #FFF;
 }
 
 a {
@@ -88,7 +88,38 @@ margin: 40px 0;
 }
 
 .date {
-color: #c03669;
+float: left;
+color: #FFF;
 margin-top: 10px;
+background-color: #c03669;
 margin-bottom: -5px;
+padding: 9px 10px;
+border-radius: 3px;
+display: inline-block;
+}
+
+header.current ul {
+float: left;
+list-style-type: none;
+}
+
+header.current ul.tags {
+width: 70%;
+margin-top: -2px;
+margin-left: -10px;
+}
+
+header.current ul.tags li {
+margin: 12px 0;
+color: #fff;
+padding: 9px 10px;
+font-weight: bold;
+font-family: arial;
+cursor: pointer;
+}
+
+header.current ul.tags li span {
+background-color: #68c241;
+border-radius: 2px;
+padding: 9px 12px;
 }
