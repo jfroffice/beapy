@@ -8,6 +8,7 @@
     "marked": "*",
     "prism": "*",
     "normalize-css": "~2.1.2",
-    "lodash": "~1.2.1"
+    "lodash": "~1.2.1",
+    "moment": "~2.0.0"
   }
 }

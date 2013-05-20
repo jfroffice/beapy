@@ -16,6 +16,11 @@
   <script id="md-tags-template" type="text/x-handlebars-template">
       <ul>{{#tags}}<li><span>{{this}}</span></li>{{/tags}}</ul>
   </script>
+  <script id="md-header-template" type="text/x-handlebars-template">
+      <div class="date">{{date}}</div>
+      <ul>{{#tags}}<li><span>{{this}}</span></li>{{/tags}}</ul>
+      <h1>{{title}}</h1>
+  </script>
 </head>
 <body>
   <div class="page">
@@ -25,6 +30,7 @@
     </section>
     <section class="content">
       <section class="article">
+        <header class="current"></header>
         <article class="current"></article>
       </section>
       <section class="sidebar">
@@ -56,6 +62,8 @@
   <script src="components/handlebars.js/dist/handlebars.js"></script>
   <script src="components/marked/lib/marked.js"></script>
   <script src="components/prism/prism.js"></script>
+  <script src="components/moment/moment.js"></script>
+  <script src="components/moment/min/lang/fr.js"></script>
   <script src="components/history.js/scripts/uncompressed/history.js"></script>
   <script src="components/history.js/scripts/uncompressed/history.adapter.jquery.js"></script>
   <script src="js/main.js"></script>

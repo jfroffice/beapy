@@ -18,6 +18,7 @@ module.exports = function(grunt) {
                       'public/components/lodash/lodash.js',
                     'public/components/handlebars.js/dist/handlebars.js',
                     'public/components/marked/lib/marked.js',
+                    'public/components/moment/moment.js',
                     'public/components/prism/prism.js',
                     'public/components/history.js/scripts/uncompressed/history.js',
                     'public/components/history.js/scripts/uncompressed/history.adapter.jquery.js',

@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 var express = require('express'),
 	http = require('http'),
 	data = require('./service/data'),

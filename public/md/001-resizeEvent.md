@@ -1,5 +1,3 @@
-# Méfiez-vous de l'événement "Resize" ?
-
 Approche simpliste
 ------------------
 vous déclarez un listener sur l'évènement "resize" en utilisant jQuery
