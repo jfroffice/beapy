@@ -20,24 +20,14 @@
         }
    }
 
-    function load($elm, name) {
+    function load($elm, name, callback) {
         // show old element
         $('nav.menu li.current').removeClass('current').show();
         //hide current element
         $elm.parent().addClass('current');
 
         $.get('./md/' + name, function(data) {
-
-            History.pushState({
-                state: name
-            }, name, "?article=" + name);
-
-            $('article.current').html(marked(data));
-            Prism.highlightAll();
-
-            updateComment(name);
-
-            $elm.parent().hide();
+            callback(data);
         });
     }
 
@@ -47,15 +37,28 @@
             name = $('.md').first().data('name');
         }
 
-    	var data = _.filter(files, { name: name })[0].data;
+    	var dataFiles = _.filter(files, { name: name })[0].data;
+        var $elm = $('.md[data-name="' + name + '"]');
 
-    	$('header.current').html(tHeader({
-            title: data.lang.fr_FR,
-            date: moment(data.date).format('LL'),
-            tags: data.tags
-        }));
+        load($elm, name, function(data) {
 
-        load($('.md[data-name="' + name + '"]'), name);
+            $elm.parent().hide();
+
+            History.pushState({
+                state: name
+            }, name, "?article=" + name);
+
+            $('header.current').html(tHeader({
+                title: dataFiles.lang.fr_FR,
+                date: moment(dataFiles.date).format('LL'),
+                tags: dataFiles.tags
+            }));
+
+            $('article.current').html(marked(data));
+            Prism.highlightAll();
+
+            updateComment(name);
+        });
     }
 
     function init(name) {
