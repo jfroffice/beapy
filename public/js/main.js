@@ -1,4 +1,4 @@
-(function(global, undefined) {
+(function(global, Handlebars, marked, undefined) {
 
 	var tFiles = Handlebars.compile($("#md-files-template").html()),
 		tTags = Handlebars.compile($("#md-tags-template").html());
@@ -13,11 +13,11 @@
 
 		// show old element
 		$('nav.menu li.current').removeClass('current').show();
-
 		//hide current element
 		$elm.parent().addClass('current');
 
 		$.get('./md/' + url, function(data) {
+
 			History.pushState({
 				state: url
 			}, url, "?article=" + url);
@@ -39,23 +39,37 @@
 		});
 	}
 
-	$.get('./json', function(files) {
+	function filter(files, name) {
+		return _.filter(files, { name: name });
+	}
 
-		$('.menu').html(tFiles({ files: files }));
+	function loadArticle(name) {
+		if (name) {
+			load($('.md[data-name="' + name + '"]'));
+		} else {
+			load($('.md').first());
+		}
+	}
 
-		var $elm = $('.md').first();
+	function init(name) {
 
-		load($elm);
+		$.get('./json', function(files) {
 
+			$('.menu').html(tFiles({ files: files }));
 
-		$('.md').on('click', function() {
-			load($(this));
+			//filter(files, name);
+
+			loadArticle(name);
+
+			$('.md').on('click', function() {
+				load($(this));
+			});
+
+			$('.tags').html(tTags({
+				tags: _.flatten(_.map(files, function(e) { return e.data.tags; }))
+			}));
 		});
-
-		$('.tags').html(tTags({
-			tags: _.flatten(_.map(files, function(e) { return e.data.tags; }))
-		}));
-	});
+	}
 
 	var History = window.History;
 	if (!History.enabled) {
@@ -64,12 +78,16 @@
 
 	var state = History.getState();
 	if (state && state.data && state.data.state) {
-		alert('should find the good element');
+
+		init(state.data.state);
+		//alert('should find the good element');
 		/*load(state.data.state);*/
+	} else {
+		init();
 	}
 
 	History.Adapter.bind(window, 'statechange', function() {
 		var State = History.getState();
 	});
 
-})(window);
+})(window, Handlebars, marked);
