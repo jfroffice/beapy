@@ -4,15 +4,16 @@
 
 var express = require('express'),
 	http = require('http'),
-	livereload = require('express-livereload'),
 	data = require('./service/data'),
-	path = require('path');
+	path = require('path'),
+	app = express();
 
-var app = express();
-
-livereload(app, {
-	watchDir: __dirname + '/public'
-});
+// development only
+if ('development' == app.get('env')) {
+	require('express-livereload')(app, {
+		watchDir: __dirname + '/public'
+	});
+}
 
 // all environments
 app.set('port', process.env.PORT || 6002);
