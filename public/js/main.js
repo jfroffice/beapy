@@ -7,7 +7,16 @@
 		langPrefix: 'language-'
 	});
 
-	function load(url) {
+	function load($elm) {
+
+		var url = $elm.data('name');
+
+		// show old element
+		$('nav.menu li.current').removeClass('current').show();
+
+		//hide current element
+		$elm.parent().addClass('current');
+
 		$.get('./md/' + url, function(data) {
 			History.pushState({
 				state: url
@@ -25,6 +34,8 @@
 					}
 				});
 			}
+
+			$elm && $elm.parent().hide();
 		});
 	}
 
@@ -32,12 +43,13 @@
 
 		$('.menu').html(tFiles({ files: files }));
 
-		if (files.length) {
-			load(files[0].name);
-		}
+		var $elm = $('.md').first();
+
+		load($elm);
+
 
 		$('.md').on('click', function() {
-			load($(this).data('name'));
+			load($(this));
 		});
 
 		$('.tags').html(tTags({
@@ -52,7 +64,8 @@
 
 	var state = History.getState();
 	if (state && state.data && state.data.state) {
-		load(state.data.state);
+		alert('should find the good element');
+		/*load(state.data.state);*/
 	}
 
 	History.Adapter.bind(window, 'statechange', function() {

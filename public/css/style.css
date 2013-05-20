@@ -55,6 +55,10 @@ font-family: arial;
 cursor: pointer;
 }
 
+.sidebar nav li.current {
+display: none;
+}
+
 .sidebar nav li span {
 border-radius: 2px;
 padding: 9px 12px;
@@ -72,8 +76,8 @@ color: #00B7FF;
 background-color: #36afe2;
 }
 
-.sidebar nav.tags {
-margin-top: 40px;
+.sidebar nav.menu {
+margin-bottom: 40px;
 }
 
 .sidebar nav.tags span {
