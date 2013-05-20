@@ -38,10 +38,8 @@ module.exports = function(grunt) {
                 dest: 'public/dist/<%= pkg.name %>.min.css'
             }
         },
-        lint: {
-            files: ['public/js/main.js']
-        },
         jshint: {
+            all: ['public/js/main.js'],
             options: {
                 curly: true,
                 eqeqeq: true,
@@ -54,20 +52,21 @@ module.exports = function(grunt) {
                 boss: true,
                 eqnull: true,
                 browser: true
-            },
-            globals: {
-                exports: false,
-                module: false,
-                jQuery: true,
-                Zepto: true
             }
+        },
+        express: {
+            server: 'app'
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-express');
 
     // Default task.
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin']);
+
+    grunt.registerTask('server', ['express']);
 };

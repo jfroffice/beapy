@@ -1,4 +1,4 @@
-(function(global, Handlebars, marked, undefined) {
+(function(global, $, _, Handlebars, marked, Prism, undefined) {
 
 	var tFiles = Handlebars.compile($("#md-files-template").html()),
 		tTags = Handlebars.compile($("#md-tags-template").html());
@@ -35,7 +35,7 @@
 				});
 			}
 
-			$elm && $elm.parent().hide();
+			$elm.parent().hide();
 		});
 	}
 
@@ -87,4 +87,4 @@
 		var State = History.getState();
 	});
 
-})(window, Handlebars, marked);
+})(window, window.jQuery, window._, window.Handlebars, window.marked, window.Prism);
