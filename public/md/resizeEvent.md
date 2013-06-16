@@ -9,15 +9,13 @@ $(window).on('resize', function() {
 
 Que se passe t'il ?
 -------------------
-Lorsque vous modifiez la taille de votre navigateur ou du "viewport", vous recevez plusieurs évènements de "resize".
+Lorsque vous modifiez la taille de votre navigateur, vous recevez plusieurs évènements de "resize".
 
 ![Redimensionnement du navigateur](md/img/01.png)
 
 Le problème est que vous recevez plusieurs notifications alors les propriétés du viewport n'ont pas été modifiés entre ces 2 évènements.
 
-Ce comportement ne correspond pas au comportement attendu.
-
-Aucun navigateur ne semble implémenter cette fonctionnalité correctement.
+Ce comportement ne correspond pas au comportement attendu. Aucun navigateur ne semble implémenter cette fonctionnalité correctement.
 
 Pour un évènement __resize__ "théorique", vous recevez plusieurs évènements identiques.
 

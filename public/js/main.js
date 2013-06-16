@@ -5,18 +5,18 @@
         tTags = Handlebars.compile($("#md-tags-template").html());
 
     marked.setOptions({
-        langPrefix: 'language-'
-    });
+            langPrefix: 'language-'
+        });
 
     function updateComment(name) {
         if (global.DISQUS) {
             global.DISQUS.reset({
-                reload: true,
-                config: function() {
-                    this.page.identifier = name;
-                    this.page.url = window.location.href;
-                }
-            });
+                    reload: true,
+                    config: function() {
+                        this.page.identifier = name;
+                        this.page.url = window.location.href;
+                    }
+                });
         }
     }
 
@@ -38,8 +38,8 @@
         }
 
         var dataFiles = _.filter(files, {
-            name: name
-        })[0].data,
+                name: name
+            })[0].data,
             $elm = $('.md[data-name="' + name + '"]');
 
         load($elm, name, function(data) {
@@ -47,14 +47,14 @@
             $elm.parent().hide();
 
             History.pushState({
-                state: name
-            }, name, "?article=" + name);
+                    state: name
+                }, name, "?article=" + name);
 
             $('header.current').html(tHeader({
-                title: dataFiles.lang.fr_FR,
-                date: moment(dataFiles.date).format('LL'),
-                tags: dataFiles.tags
-            }));
+                        title: dataFiles.lang.fr_FR,
+                        date: moment(dataFiles.date).format('LL'),
+                        tags: dataFiles.tags
+                    }));
 
             $('article.current').html(marked(data));
             Prism.highlightAll();
@@ -67,8 +67,8 @@
         $.get('./data', function(files) {
 
             $('.menu').html(tFiles({
-                files: files
-            }));
+                        files: files
+                    }));
 
             $('.md').on('click', function() {
                 loadArticle(files, $(this).data('name'));
