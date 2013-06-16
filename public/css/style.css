@@ -29,8 +29,6 @@ display: inline-block;
 
 .article {
 float: left;
-width: 65%;
-/*min-height: 400px;*/
 }
 
 .sidebar {
@@ -95,6 +93,7 @@ margin-bottom: -5px;
 padding: 9px 10px;
 border-radius: 3px;
 display: inline-block;
+margin-top: 16px;
 }
 
 header.current ul {
@@ -103,13 +102,11 @@ list-style-type: none;
 }
 
 header.current ul.tags {
-width: 70%;
-margin-top: -12px;
+margin-top: 16px;
 margin-left: -10px;
 }
 
 header.current ul.tags li {
-margin: 12px 0;
 color: #fff;
 padding: 9px 10px;
 font-weight: bold;
@@ -121,4 +118,14 @@ header.current ul.tags li span {
 background-color: #68c241;
 border-radius: 2px;
 padding: 9px 12px;
+}
+
+.meta-head {
+width: 400px;
+height: 45px;
+}
+
+p > img {
+display: block;
+margin: auto;
 }

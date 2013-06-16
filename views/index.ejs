@@ -17,8 +17,10 @@
       <ul>{{#tags}}<li><span>{{this}}</span></li>{{/tags}}</ul>
   </script>
   <script id="md-header-template" type="text/x-handlebars-template">
-      <div class="date">{{date}}</div>
-      <ul class='tags'>{{#tags}}<li><span>{{this}}</span></li>{{/tags}}</ul>
+      <div class="meta-head">
+        <div class="date">{{date}}</div>
+        <ul class='tags'>{{#tags}}<li><span>{{this}}</span></li>{{/tags}}</ul>
+      </div>
       <h1>{{title}}</h1>
   </script>
 </head>

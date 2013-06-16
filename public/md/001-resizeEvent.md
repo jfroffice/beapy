@@ -1,9 +1,9 @@
-Approche simpliste
-------------------
+Approche simple
+---------------
 Pour gérer l'évènement __resize__, vous déclarez un listener sur cet évènement en utilisant jQuery
 ```javascript
 $(window).on('resize', function() {
-	// do your job here
+	// traitement
 });
 ```
 
@@ -20,6 +20,8 @@ Ce comportement ne correspond pas au comportement attendu.
 Aucun navigateur ne semble implémenter cette fonctionnalité correctement.
 
 Pour un évènement __resize__ "théorique", vous recevez plusieurs évènements identiques.
+
+Les performances de votre application peuvent dégrader de façon majeure si vous ne traitez pas ce problème.
 
 ![Redimensionnement du navigateur](md/img/02.png)
 
@@ -42,6 +44,6 @@ Utilisation
 Son fonctionnement est simple, vous déclarez un listener sur l'évènement __trueresize__ et non __resize__
 ```javascript
 $(window).on('trueresize', function() {
-    // do your job here
+    // traitement
 });
 ```
