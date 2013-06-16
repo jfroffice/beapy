@@ -89,11 +89,9 @@ margin: 40px 0;
 float: left;
 color: #FFF;
 background-color: #c03669;
-margin-bottom: -5px;
 padding: 9px 10px;
 border-radius: 3px;
 display: inline-block;
-margin-top: 16px;
 }
 
 header.current ul {
@@ -102,13 +100,11 @@ list-style-type: none;
 }
 
 header.current ul.tags {
-margin-top: 16px;
-margin-left: -10px;
+margin-top: 9px;
 }
 
 header.current ul.tags li {
 color: #fff;
-padding: 9px 10px;
 font-weight: bold;
 font-family: arial;
 cursor: pointer;
@@ -121,8 +117,9 @@ padding: 9px 12px;
 }
 
 .meta-head {
+margin-top: 16px;
 width: 400px;
-height: 45px;
+height: 34px;
 }
 
 p > img {
