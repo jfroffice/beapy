@@ -54,4 +54,4 @@ Conclusion
 ----------
 Voilà, j'espère que cette démonstration vous aura été utile afin d'appréhender au mieux l'évènement __resize__.
 
-Mais souvenez-vous pourquoi voulez vous écouter l'évènement __resize__ ? la plus part du temps c'est inutile.
+Mais souvenez-vous pourquoi voulez-vous écouter l'évènement __resize__ ? la plupart du temps c'est inutile.
