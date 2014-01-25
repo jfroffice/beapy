@@ -25,7 +25,7 @@ Les performances de votre application peuvent dégrader de façon majeure si vou
 
 Afin d'en avoir le coeur net, j'ai réalisé une étude afin de montrer ce phénomène (cf. [jquery.trueresize](https://github.com/jfroffice/jquery.trueresize))
 
-![Redimensionnement du navigateur](md/img/02.png)
+![Redimensionnement du navigateur](../md/img/02.png)
 
 Les évènements parasites sont symbolisés en rouge sur le schéma ci-dessus.
 
@@ -33,7 +33,7 @@ Solution de contournement
 -------------------------
 Ce problème a été remonté par l'excellent [__@paulirish__](https://twitter.com/paul_irish) en [2009](http://paulirish.com/2009/throttled-smartresize-jquery-event-handler/). Plusieurs libraires traitent ce problème tel que [underscore](http://underscorejs.org/#debounce) ou la librairie [smartresize](https://github.com/louisremi/jquery-smartresize/).
 
-![Redimensionnement du navigateur](md/img/03.png)
+![Redimensionnement du navigateur](../md/img/03.png)
 
 Suppression des évènements parasites
 ------------------------------------
