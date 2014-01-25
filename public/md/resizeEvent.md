@@ -11,7 +11,7 @@ Que se passe t'il ?
 -------------------
 Si vous modifiez la taille de votre navigateur, vous recevez plusieurs évènements "resize".
 
-![Redimensionnement du navigateur](md/img/01.png)
+![Redimensionnement du navigateur](../md/img/01.png)
 
 Le problème est que vous recevez des évènements inutiles.
 
@@ -54,4 +54,4 @@ Conclusion
 ----------
 Voilà, j'espère que cette démonstration vous aura été utile afin d'appréhender au mieux l'évènement __resize__.
 
-Mais souvenez-vous pourquoi voulez-vous écouter l'évènement __resize__ ? la plupart du temps c'est inutile.
+Souvenez-vous pourquoi vous voulez écouter l'évènement __resize__ ? la plupart du temps c'est inutile.
