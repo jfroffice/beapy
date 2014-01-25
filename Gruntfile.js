@@ -14,7 +14,7 @@ module.exports = function(grunt) {
                 dest: 'public/dist/<%= pkg.name %>.css'
             },
             dist: {
-                src: ['public/components/lodash/lodash.js',
+                src: ['public/components/lodash/dist/lodash.js',
                     'public/components/handlebars/handlebars.js',
                     'public/components/marked/lib/marked.js',
                     'public/components/moment/moment.js',
