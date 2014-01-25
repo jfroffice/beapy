@@ -10,12 +10,12 @@ module.exports = function(grunt) {
             css: {
                 src: ['public/components/normalize-css/normalize.css',
                     'public/css/style.css',
-                    'public/components/prism/prism.css'],
+                    'public/components/prism/themes/prism.css'],
                 dest: 'public/dist/<%= pkg.name %>.css'
             },
             dist: {
                 src: ['public/components/lodash/lodash.js',
-                    'public/components/handlebars.js/dist/handlebars.js',
+                    'public/components/handlebars/handlebars.js',
                     'public/components/marked/lib/marked.js',
                     'public/components/moment/moment.js',
                     'public/components/moment/min/lang/fr.js',

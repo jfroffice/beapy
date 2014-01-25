@@ -1,14 +1,14 @@
 {
   "name": "beapy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
     "jquery": "*",
     "history.js": "*",
-    "handlebars.js": "lastest",
+    "handlebars": "*",
     "marked": "*",
-    "prism": "*",
-    "normalize-css": "~2.1.2",
-    "lodash": "~1.2.1",
-    "moment": "~2.0.0"
+    "prism": "gh-pages",
+    "normalize-css": "*",
+    "lodash": "*",
+    "moment": "*"
   }
 }

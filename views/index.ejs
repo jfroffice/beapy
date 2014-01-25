@@ -5,7 +5,7 @@
   <% if (env === 'development') { %>
   <link href="/components/normalize-css/normalize.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet" />
-  <link href="/components/prism/prism.css" rel="stylesheet" />
+  <link href="/components/prism/themes/prism.css" rel="stylesheet" />
   <% } else { %>
   <link href="/dist/beapy.min.css" rel="stylesheet" />
   <% } %>
@@ -60,12 +60,12 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="components/jquery/jquery.js"><\/script>')</script>
   <% if (env === 'development') { %>
-  <script src="components/lodash/lodash.js"></script>
-  <script src="components/handlebars.js/dist/handlebars.js"></script>
+  <script src="components/lodash/dist/lodash.js"></script>
+  <script src="components/handlebars/handlebars.js"></script>
   <script src="components/marked/lib/marked.js"></script>
   <script src="components/prism/prism.js"></script>
   <script src="components/moment/moment.js"></script>
-  <script src="components/moment/min/lang/fr.js"></script>
+  <script src="components/moment/lang/fr.js"></script>
   <script src="components/history.js/scripts/uncompressed/history.js"></script>
   <script src="components/history.js/scripts/uncompressed/history.adapter.jquery.js"></script>
   <script src="js/main.js"></script>
