@@ -2,6 +2,10 @@ body {
 background-image: url(../img/ricepaper2.png);
 }
 
+pre {
+	width: 870px;
+}
+
 .page {
 padding: 0 30px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -111,6 +115,8 @@ color: #fff;
 font-weight: bold;
 font-family: arial;
 cursor: pointer;
+float: left;
+margin-right: 10px;
 }
 
 header.current ul.tags li span {
