@@ -50,6 +50,8 @@
                 state: name
             }, name, "?article=" + name);
 
+            document.title = 'CodeMoods - ' + name.replace('.md', '');
+
             $('header.current').html(tHeader({
                 title: dataFiles.lang.fr_FR,
                 date: moment(dataFiles.date).format('LL'),

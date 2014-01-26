@@ -2,7 +2,11 @@
 
 Introduction
 ============
-[Browserify](https://github.com/substack/node-browserify) permet d'utiliser dans le navigateur des modules [NodeJS](http://nodejs.org/) en utilisant la syntaxe [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1).
+[Browserify](https://github.com/substack/node-browserify) permet d'utiliser dans le navigateur des modules dit [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1).
+
+Les modules CommonJS permettent de résoudre les problématiques de dépendances Javascript.
+
+Chaque module doit exporter explicitement les variables qu'il souhaite exposer et il doit également définir explicitement les dépendances qu'il souhaite utiliser.
 
 Dans la pratique
 ================
@@ -26,7 +30,7 @@ générer ensuite le fichier __bundle.js__
 browserify main.js > bundle.js
 ```
 
-Ce fichier est une "pseudo" concaténation des deux fichiers, vous pourrez alors l'inclure l'inclure dans votre page en un seul appel.
+Ce fichier est une "pseudo" concaténation des deux fichiers, vous pourrez alors l'inclure dans votre page.
 
 __index.html__
 ```markup
@@ -54,7 +58,7 @@ exports.doSomething = function() {
 };	
 ```
 
-Le fichier est du chinoix et totalement inexploitable pour le deboggage.
+Le fichier est illisible et quasiment inexploitable pour le deboggage.
 
 
 Comment travailler avec Browserify ?
@@ -71,9 +75,9 @@ Utilisons la commander _--debug_ de browserify.
 browserify main.js --debug > bundle.js
 ```
 
-Celle-ci va nous permettre de générer des meta-données (SourceMap) qui vont référencer nos fichiers sources.
+Celle-ci va nous permettre de générer des meta-données _SourceMapping_ qui vont référencer nos fichiers sources.
 
-Voici ce qui a été rajouté dans le bas de notre fichier bundle.js : sourceMappingURL=data:application/json;base64
+Voici ce qui a été rajouté dans le bas du fichier bundle.js.
 
 __bundle.js__
 ```javascript
@@ -121,7 +125,7 @@ app.listen(3000);
 
 Cela fonctionne bien la première fois.
 
-Puis, lorsqu'on modifie un des fichiers sources, il n'est pas prise en compte correctement.
+Puis, lorsqu'on modifie un des fichiers sources, il n'est pas pris en compte.
 
 Le cache ne semble pas être correctement géré.
 
@@ -162,3 +166,11 @@ module.exports = function(grunt) {
 	grunt.registerTask("default", ["watch"]);
 };
 ```
+
+
+Conclusion
+==========
+
+L'intégration de __browserify__ dans votre environnement de developpement peut être délicate mais elle est possible.
+
+Il est donc tant de franchir le pas et d'utiliser le bénéfice des modules CommonJS.
