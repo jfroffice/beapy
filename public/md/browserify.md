@@ -1,3 +1,5 @@
+![Browserify!](https://github-camo.global.ssl.fastly.net/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)
+
 Introduction
 ============
 [Browserify](https://github.com/substack/node-browserify) permet d'utiliser dans le navigateur des modules [NodeJS](http://nodejs.org/) en utilisant la syntaxe [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1).
@@ -60,19 +62,16 @@ Comment travailler avec Browserify ?
 
 Il est difficile d'imaginer pour le moment qu'il faille lancer la compilation à chaque fois pour voir si notre code fonctionne.
 
-PS: c'est pourtant comme ça que CoffeeScript a perçé.
-
-
 1ère solution
 =============
 
-Utilisons la commander --debug de browserify.
+Utilisons la commander _--debug_ de browserify.
 
 ```javascript
 browserify main.js --debug > bundle.js
 ```
 
-Celle-ci va nous permettre de générer des fichiers .map qui vont référencer nos fichiers sources.
+Celle-ci va nous permettre de générer des meta-données (SourceMap) qui vont référencer nos fichiers sources.
 
 Voici ce qui a été rajouté dans le bas de notre fichier bundle.js : sourceMappingURL=data:application/json;base64
 
@@ -87,14 +86,79 @@ En activant les JS SourceMap dans Chrome, nous pouvons voir nos fichiers sources
 
 C'est très bien pour les opérations de debogage, mais lors du développement quand est'il ?
 
+
 2ème solution
 =============
+
+Utilisons un proxy qui va faire la conversion __browserify__ à la volée.
+
+Les deux meilleurs protagonistes semblent être :
+
+- [node-enchilada](https://github.com/defunctzombie/node-enchilada)
+
+- [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware)
+
+Il fonctionne tout les deux avec [ExpressJS](http://expressjs.com/), la génération du fichier se fait à la volée.
 
 __index.html__
 ```markup
 <html>
-<body>123</body>
-<script src="js/module.js"></script>
-<script src="js/main.js"></script>
+<head></head>
+<body></body>
+<script src="bundle.js"></script>	
 </html>
+```
+
+__app.js__
+```javascript
+var browserify = require('browserify-middleware'),	
+	app = express();
+
+app.get('/bundle.js', browserify(path.join(__dirname, 'public/js/bundle.js')));
+
+app.listen(3000);
+```
+
+Cela fonctionne bien la première fois.
+
+Puis, lorsqu'on modifie un des fichiers sources, il n'est pas prise en compte correctement.
+
+Le cache ne semble pas être correctement géré.
+
+
+
+3ème solution
+=============
+
+Utiliser [Grunt](http://gruntjs.com/) et son plugin [grunt-browserify](https://github.com/jmreidy/grunt-browserify) pour recompiler les fichiers à la volée.
+
+
+__index.html__
+```markup
+<html>
+<head></head>
+<body></body>
+<script src="dist/bundle.js"></script>	
+</html>
+```
+
+__Gruntfile.js__
+```javascript
+module.exports = function(grunt) {
+	grunt.initConfig({
+    	pkg: grunt.file.readJSON('package.json'),
+    	browserify: {
+	      './public/dist/bundle.js': ['./public/js/bundle.js']
+	    },
+	    watch: {
+	      	files: ['public/js/**/*.js'],
+	      	tasks: ['browserify']
+	    }
+  	})
+
+	grunt.loadNpmTasks('grunt-browserify');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+
+	grunt.registerTask("default", ["watch"]);
+};
 ```
