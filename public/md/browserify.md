@@ -6,7 +6,9 @@ Introduction
 
 Les modules CommonJS permettent de résoudre les problématiques de dépendances Javascript.
 
-Chaque module doit exporter explicitement les variables qu'il souhaite exposer et il doit également définir explicitement les dépendances qu'il souhaite utiliser.
+Chaque module doit exporter explicitement les variables qu'il souhaite exposer.
+
+Il doit également définir explicitement les dépendances qu'il souhaite utiliser.
 
 Dans la pratique
 ================
@@ -24,24 +26,22 @@ var module = require('./module');
 module.doSomething();	
 ```
 
-générer ensuite le fichier __bundle.js__
+Noter l'utilisation des mots-clefs __exports.__ pour exposer une variable et __require()__ pour importer une dépendance.
+
+générer ensuite le fichier __bundle.js__ en utilisant la commande __browserify__.
 
 ```javascript
 browserify main.js > bundle.js
 ```
 
-Ce fichier est une "pseudo" concaténation des deux fichiers, vous pourrez alors l'inclure dans votre page.
+Ce fichier est une "pseudo" concaténation des deux fichiers, vous pouvez l'inclure dans votre page.
 
 __index.html__
 ```markup
-<html>
-<head></head>
-<body></body>
 <script src="js/bundle.js"></script>	
-</html>
 ```
 
-A titre de curiosité, voici le fichier qui a été généré.
+Voici le fichier qui a été généré.
 
 __bundle.js__
 ```javascript
@@ -58,43 +58,43 @@ exports.doSomething = function() {
 };	
 ```
 
-Le fichier est illisible et quasiment inexploitable pour le deboggage.
+Le fichier est illisible et inexploitable pour le débogage. Mais browserify fait son travail, le code est fonctionnel !
 
 
 Comment travailler avec Browserify ?
 ====================================
 
-Il est difficile d'imaginer pour le moment qu'il faille lancer la compilation à chaque fois pour voir si notre code fonctionne.
+Il est difficile d'imaginer pour le moment qu'il faille relancer la compilation à chaque fois pour voir si notre code fonctionne.
 
 1ère solution
 =============
 
-Utilisons la commander _--debug_ de browserify.
+Utiliser la commander _--debug_ de browserify.
 
 ```javascript
 browserify main.js --debug > bundle.js
 ```
 
-Celle-ci va nous permettre de générer des meta-données _SourceMapping_ qui vont référencer nos fichiers sources.
+Celle-ci va nous permettre de générer des meta-données dit "SourceMapping" qui vont référencer nos fichiers sources.
 
-Voici ce qui a été rajouté dans le bas du fichier bundle.js.
+Les meta-données sont visibles en bas du fichier bundle.js.
 
 __bundle.js__
 ```javascript
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXJhdGVkLmpzIiwic291cmNl
 ```
 
-En activant les JS SourceMap dans Chrome, nous pouvons voir nos fichiers sources initiales.
+En activant les "JS SourceMap" dans Chrome, nous pouvons voir nos fichiers sources initiales.
 
 ![Utilisation des JS SourceMap dans Chrome](../md/img/browserify01.jpg)
 
-C'est très bien pour les opérations de debogage, mais lors du développement quand est'il ?
+Attention, ces données doivent rester accessibles exclusement pour le debug et non en production car elles contiennent le chemin absolut de vos fichiers.
 
 
 2ème solution
 =============
 
-Utilisons un proxy qui va faire la conversion __browserify__ à la volée.
+Utiliser un proxy qui va faire la conversion __browserify__ à la volée.
 
 Les deux meilleurs protagonistes semblent être :
 
@@ -102,32 +102,27 @@ Les deux meilleurs protagonistes semblent être :
 
 - [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware)
 
-Il fonctionne tout les deux avec [ExpressJS](http://expressjs.com/), la génération du fichier se fait à la volée.
+Il fonctionne tout les deux avec [ExpressJS](http://expressjs.com/).
 
 __index.html__
 ```markup
-<html>
-<head></head>
-<body></body>
 <script src="bundle.js"></script>	
-</html>
 ```
 
 __app.js__
 ```javascript
-var browserify = require('browserify-middleware'),	
-	app = express();
+var browserify = require('browserify-middleware');
 
 app.get('/bundle.js', browserify(path.join(__dirname, 'public/js/bundle.js')));
-
-app.listen(3000);
 ```
 
 Cela fonctionne bien la première fois.
 
 Puis, lorsqu'on modifie un des fichiers sources, il n'est pas pris en compte.
 
-Le cache ne semble pas être correctement géré.
+Le cache ne semble pas être correctement géré. La même problématique est rencontrée avec 'node-enchilada'.
+
+Cette 2éme solution est écartée.
 
 
 
@@ -139,11 +134,7 @@ Utiliser [Grunt](http://gruntjs.com/) et son plugin [grunt-browserify](https://g
 
 __index.html__
 ```markup
-<html>
-<head></head>
-<body></body>
 <script src="dist/bundle.js"></script>	
-</html>
 ```
 
 __Gruntfile.js__
@@ -167,10 +158,14 @@ module.exports = function(grunt) {
 };
 ```
 
+Dès qu'un fichier est modifié dans le répertoire "public/js/**/*.js", la tâche "browserify", est executée.
+
 
 Conclusion
 ==========
 
 L'intégration de __browserify__ dans votre environnement de developpement peut être délicate mais elle est possible.
 
-Il est donc tant de franchir le pas et d'utiliser le bénéfice des modules CommonJS.
+Retener l'utilisation du plugin __grunt-browserify__, qui simplifie son intégration.
+
+N'attentez plus pour bénéficer des modules CommonJS et maîtriser vos dépendances JS.
