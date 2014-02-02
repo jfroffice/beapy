@@ -34,7 +34,7 @@ position: fixed;
 top: 10px;
 right: 10px;
 border: 1px solid #EEE;
-box-shadow: 1px 1px 3px #AAA;
+box-shadow: 1px 1px 2px #AAA;
 }
 
 .sidebar nav ul {
@@ -127,7 +127,10 @@ margin-bottom: 32px;
 
 p > img {
 display: block;
-margin: auto;
+max-width: 100%;
+height: auto;
+margin-left: auto;
+margin-right: auto;
 }
 
 @media (max-width: 960px) {
@@ -137,5 +140,16 @@ margin: auto;
 
 	.page {
 		width: auto;
+		padding: 0 15px;
+	}
+
+	.sidebar {
+		position: static;
+		border: none;
+		box-shadow: none;
+	}
+
+	.sidebar nav li {
+		padding: 20px 0 0;
 	}
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Coding Moods by jfroffice</title>
+  <title>Coding Moods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <% if (env === 'development') { %>
   <link href="/css/style.css" rel="stylesheet" />
   <link href="/components/prism/themes/prism.css" rel="stylesheet" />
@@ -15,16 +16,16 @@
       <h1 class="title">Coding Moods</h1>
       <p>Ce blog est propulsé par <a href='https://github.com/jfroffice/beapy'>Beapy BETA</a>.</p>
     </section>
+    <section class="sidebar">
+        <nav class="menu"></nav>
+        <nav class="tags"></nav>
+    </section>
     <section class="content">
       <section class="article">
         <header class="current"></header>
         <article class="current"></article>
       </section>      
-    </section>
-    <section class="sidebar">
-        <nav class="menu"></nav>
-        <nav class="tags"></nav>
-      </section>
+    </section>    
     <section class="comment">
       <% if (env !== 'development') { %>
       <div id="disqus_thread"></div>
