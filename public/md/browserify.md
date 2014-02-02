@@ -6,9 +6,7 @@ Introduction
 
 Les modules CommonJS permettent de résoudre les problématiques de dépendances Javascript.
 
-Chaque module doit exporter explicitement les variables qu'il souhaite exposer.
-
-Il doit également définir explicitement les dépendances qu'il souhaite utiliser.
+Chaque module doit exporter explicitement les variables qu'il souhaite exposer, et il doit également définir explicitement les dépendances qu'il souhaite utiliser.
 
 Dans la pratique
 ================
@@ -84,7 +82,7 @@ __bundle.js__
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXJhdGVkLmpzIiwic291cmNl
 ```
 
-En activant les "JS SourceMap" dans Chrome, nous pouvons voir nos fichiers sources initiales.
+En activant les "JS SourceMap" dans Chrome, nous pouvons voir nos fichiers sources initials.
 
 ![Utilisation des JS SourceMap dans Chrome](../md/img/browserify01.jpg)
 
