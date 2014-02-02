@@ -3,16 +3,6 @@ background-image: url(../img/ricepaper2.jpg);
 margin: 0;
 }
 
-@media (max-width: 767px) {
-	body {
-	background-image: none;
-	}
-}
-
-pre {
-	width: 870px;
-}
-
 .page {
 padding: 0 30px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -36,10 +26,6 @@ color: #c03669;
 .content {
 width: 100%;
 display: inline-block;
-}
-
-.article {
-float: left;
 }
 
 .sidebar {
@@ -142,4 +128,14 @@ margin-bottom: 32px;
 p > img {
 display: block;
 margin: auto;
+}
+
+@media (max-width: 960px) {
+	body {
+	background-image: none;
+	}
+
+	.page {
+		width: auto;
+	}
 }
