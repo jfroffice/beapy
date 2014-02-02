@@ -4,11 +4,8 @@
   "dependencies": {
     "jquery": "*",
     "history.js": "*",
-    "handlebars": "*",
     "marked": "*",
     "prism": "gh-pages",
-    "normalize-css": "*",
-    "lodash": "*",
     "moment": "*"
   }
 }

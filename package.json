@@ -12,7 +12,6 @@
     "lodash": "~1.2.1"
   },
   "devDependencies": {
-    "express-livereload": "*",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.5.3",
     "grunt-contrib-concat": "~0.3.0",

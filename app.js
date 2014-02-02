@@ -7,16 +7,10 @@ var express = require('express'),
 
 if ('development' == app.get('env')) {
 	 maxAge = 1000;
-
-	/*require('express-livereload')(app, {
-		watchDir: __dirname + '/public'
-	});*/
 } else {
-    maxAge = 30 * 24 * 60 * 60 * 1000;
+    maxAge = 2592000000; //30 * 24 * 60 * 60 * 1000;
 }
 
-
-// all environments
 app.set('port', process.env.PORT || 6002);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -28,7 +22,6 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')), { maxAge: maxAge });
 
-// development only
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
