@@ -1,12 +1,12 @@
-(function(global, $, marked, Prism, moment, undefined) {
+(function($, marked, Prism, moment, DISQUS, undefined) {
 
     marked.setOptions({
         langPrefix: 'language-'
     });
 
     function updateComment(name) {
-        if (global.DISQUS) {
-            global.DISQUS.reset({
+        if (DISQUS) {
+            DISQUS.reset({
                 reload: true,
                 config: function() {
                     this.page.identifier = name;
@@ -17,9 +17,9 @@
     }
 
     function load($elm, name, cb) {
-        
+
         $('nav.menu li.current').removeClass('current').show();
-        
+
         $elm.addClass('current');
 
         $.get('./md/' + name, function(data) {
@@ -114,4 +114,4 @@
     // depend on current lang
     moment.lang('fr');
 
-})(window, window.jQuery, window.marked, window.Prism, window.moment);
+})(window.jQuery, window.marked, window.Prism, window.moment, window.DISQUS);
