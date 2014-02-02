@@ -8,15 +8,12 @@ module.exports = function(grunt) {
         },
         concat: {
             css: {
-                src: ['public/components/normalize-css/normalize.css',
-                    'public/css/style.css',
+                src: ['public/css/style.css',
                     'public/components/prism/themes/prism.css'],
                 dest: 'public/dist/<%= pkg.name %>.css'
             },
             dist: {
-                src: ['public/components/lodash/dist/lodash.js',
-                    'public/components/handlebars/handlebars.js',
-                    'public/components/marked/lib/marked.js',
+                src: ['public/components/marked/lib/marked.js',
                     'public/components/moment/moment.js',
                     'public/components/moment/lang/fr.js',
                     'public/components/prism/prism.js',

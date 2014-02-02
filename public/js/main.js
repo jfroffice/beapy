@@ -33,7 +33,7 @@
         tmp += '<div class="date">' + date + '</div>';
         tmp += '<ul class="tags">';
 
-        for(var i=0; i<tags.length; i++) {
+        for (var i = 0; i < tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
@@ -47,9 +47,9 @@
         if (!name) {
             name = $('.md').first().data('name');
         }
-        
+
         var dataFiles;
-        for(var i=0; i<files.length; i++) {
+        for (var i = 0; i < files.length; i++) {
             if (files[i].name === name) {
                 dataFiles = files[i].data;
             }
@@ -79,7 +79,7 @@
     function renderMenu(files) {
         var tmp = '<ul>';
 
-        for(var i=0;i<files.length; i++) {
+        for (var i = 0; i < files.length; i++) {
             var file = files[i];
             tmp += '<li><span class="md" data-name="' + file.name + '">' + file.data.lang.fr_FR + '</span></li>';
         }
