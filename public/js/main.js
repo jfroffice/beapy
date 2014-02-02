@@ -17,10 +17,10 @@
     }
 
     function load($elm, name, cb) {
-        // show old element
+        
         $('nav.menu li.current').removeClass('current').show();
-        //hide current element
-        $elm.parent().addClass('current');
+        
+        $elm.addClass('current');
 
         $.get('./md/' + name, function(data) {
             cb(data);
@@ -29,7 +29,6 @@
 
     function renderHeader(title, date, tags) {
         var tmp = '<div class="meta-head">';
-
         tmp += '<div class="date">' + date + '</div>';
         tmp += '<ul class="tags">';
 
@@ -37,8 +36,7 @@
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
-        tmp += '</ul></div>';
-        tmp += '<h1>' + title + '</h1>';
+        tmp += '</ul></div><h1>' + title + '</h1>';
         return tmp;
     }
 
@@ -54,11 +52,11 @@
                 dataFiles = files[i].data;
             }
         }
-        var $elm = $('.md[data-name="' + name + '"]');
+        var $elm = $('.md[data-name="' + name + '"]').parent();
 
         load($elm, name, function(data) {
 
-            $elm.parent().hide();
+            $elm.hide();
 
             History.pushState({
                 state: name
@@ -112,10 +110,6 @@
     } else {
         init();
     }
-
-    History.Adapter.bind(window, 'statechange', function() {
-        var State = History.getState();
-    });
 
     // depend on current lang
     moment.lang('fr');
