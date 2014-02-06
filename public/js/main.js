@@ -1,4 +1,4 @@
-(function($, marked, Prism, moment, DISQUS, undefined) {
+(function($, marked, Prism, moment, DISQUS, history, undefined) {
 
     marked.setOptions({
         langPrefix: 'language-'
@@ -40,6 +40,7 @@
         return tmp;
     }
 
+
     function loadArticle(files, name) {
 
         if (!name) {
@@ -57,11 +58,11 @@
         load($elm, name, function(data) {
 
             $elm.hide();
-
-            History.pushState({
+                        
+            history.pushState({
                 state: name
-            }, name, "?article=" + name);
-
+            }, name, '/#' + name);
+           
             document.title = 'CodeMoods - ' + name.replace('.md', '');
 
             var header = renderHeader(dataFiles.lang.fr_FR, moment(dataFiles.date).format('LL'), dataFiles.tags);
@@ -87,6 +88,7 @@
     }
 
     function init(name) {
+
         $.get('./data', function(files) {
 
             $('.menu').html(renderMenu(files));
@@ -99,14 +101,8 @@
         });
     }
 
-    var History = window.History;
-    if (!History.enabled) {
-        return false;
-    }
-
-    var state = History.getState();
-    if (state && state.data && state.data.state) {
-        init(state.data.state);
+    if (location.hash) {
+        init(location.hash.slice(1));
     } else {
         init();
     }
@@ -114,4 +110,4 @@
     // depend on current lang
     moment.lang('fr');
 
-})(window.jQuery, window.marked, window.Prism, window.moment, window.DISQUS);
+})(window.jQuery, window.marked, window.Prism, window.moment, window.DISQUS, window.history);
