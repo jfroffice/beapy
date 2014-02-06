@@ -58,11 +58,11 @@
         load($elm, name, function(data) {
 
             $elm.hide();
-                        
+
             history.pushState({
                 state: name
             }, name, '/#' + name);
-           
+
             document.title = 'CodeMoods - ' + name.replace('.md', '');
 
             var header = renderHeader(dataFiles.lang.fr_FR, moment(dataFiles.date).format('LL'), dataFiles.tags);

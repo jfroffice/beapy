@@ -16,9 +16,7 @@ module.exports = function(grunt) {
                 src: ['public/components/marked/lib/marked.js',
                     'public/components/moment/moment.js',
                     'public/components/moment/lang/fr.js',
-                    'public/components/prism/prism.js',
-                    'public/components/history.js/scripts/uncompressed/history.js',
-                    'public/components/history.js/scripts/uncompressed/history.adapter.jquery.js',
+                    'public/components/prism/prism.js',                    
                     'public/js/main.js'],
                 dest: 'public/dist/<%= pkg.name %>.js'
             }

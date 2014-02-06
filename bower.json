@@ -2,8 +2,7 @@
   "name": "beapy",
   "version": "0.2.0",
   "dependencies": {
-    "jquery": "*",
-    "history.js": "*",
+    "jquery": "*",    
     "marked": "*",
     "prism": "gh-pages",
     "moment": "*"
