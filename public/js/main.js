@@ -1,10 +1,10 @@
 var disqus_shortname = 'jfroffice';
 
 (function($, marked, Prism, DISQUS, history, undefined) {
-    
+
     var commentLoaded = true,
         currentName;
-    
+
     function setName(name) {
         if (name === currentName) {
             return;
@@ -17,10 +17,10 @@ var disqus_shortname = 'jfroffice';
         }, name, '/#' + name);
     }
 
-    marked.setOptions({
+    /* marked.setOptions({
         langPrefix: 'language-'
-    });
-    
+    });*/
+
     function load(name, cb) {
         $.get('./md/' + name, function(data) {
             cb(data);
@@ -32,7 +32,7 @@ var disqus_shortname = 'jfroffice';
         tmp += '<div class="date">' + date + '</div>';
         tmp += '<ul class="tags">';
 
-        for (var i=0; i<tags.length; i++) {
+        for (var i = 0; i < tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
@@ -48,9 +48,9 @@ var disqus_shortname = 'jfroffice';
     }
 
     function getMeta(files, name) {
-        for (var i=0; i < files.length; i++) {
+        for (var i = 0; i < files.length; i++) {
             if (files[i].name === name) {
-                return files[i].data;                
+                return files[i].data;
             }
         }
     }
@@ -61,13 +61,14 @@ var disqus_shortname = 'jfroffice';
             name = $('.md').first().data('name');
         }
 
-        var meta = getMeta(files, name);        
-        
+        var meta = getMeta(files, name);
+
         load(name, function(data) {
+
             setName(name);
             document.title = 'CodeMoods - ' + name.replace('.md', '');
 
-            var article = marked(data);
+            var article = data;
             var header = renderHeader(meta.lang.fr_FR, formatDate(meta.date), meta.tags);
             $('header.current').html(header);
             $('article.current').html(article);
@@ -81,13 +82,13 @@ var disqus_shortname = 'jfroffice';
     function renderMenu(files, newName) {
         var tmp = '<ul>';
 
-        for (var i=0; i<files.length; i++) {
+        for (var i = 0; i < files.length; i++) {
             var file = files[i];
             if (file.name !== newName) {
                 tmp += '<li><a class="md" data-name="' + file.name + '" href="#' + file.name + '">' + file.data.lang.fr_FR + '</a>';
             }
         }
-        
+
         return tmp + '</ul>';
     }
 
@@ -106,19 +107,19 @@ var disqus_shortname = 'jfroffice';
 
     // loading disqus comment only if user go at bottom of page
     $(window).scroll(function() {
-       if(!commentLoaded && ($(window).scrollTop() + $(window).height() > $(document).height() - 300)) {
-                      
-           commentLoaded = true;           
-           
-           var dsq = document.createElement('script');
-           dsq.type = 'text/javascript';
-           dsq.async = true;
-           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        if (!commentLoaded && ($(window).scrollTop() + $(window).height() > $(document).height() - 300)) {
 
-           (document.getElementsByTagName('body')[0]).appendChild(dsq); 
+            commentLoaded = true;
 
-           $('.comment').show();          
-       }
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            (document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+            $('.comment').show();
+        }
     });
 
     function updateDisqus(name) {
