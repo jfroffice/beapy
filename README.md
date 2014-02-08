@@ -1,6 +1,8 @@
 Beapy
 =====
-single-page blog engine rendering markdown file
+single-page diet blog engine rendering markdown file.
+
+light and fast is beautiful. 
 
 __v0.2.1__
 
@@ -20,8 +22,7 @@ node app.js
 
 Powered by
 ----------
-- [jquery](https://github.com/jquery/jquery)
-- [history.js](https://github.com/browserstate/history.js) (to handle state on single page)
+- [jQuery](https://github.com/jquery/jquery)
 - [marked](https://github.com/chjj/marked) (to render markdown file)
 - [prism](https://github.com/LeaVerou/prism) (to highlight code)
 - Disqus for comments
