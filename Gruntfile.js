@@ -14,9 +14,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: ['public/components/marked/lib/marked.js',
-                    'public/components/moment/moment.js',
-                    'public/components/moment/lang/fr.js',
-                    'public/components/prism/prism.js',                    
+                    'public/components/prism/prism.js',
                     'public/js/main.js'],
                 dest: 'public/dist/<%= pkg.name %>.js'
             }

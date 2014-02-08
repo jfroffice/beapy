@@ -2,8 +2,8 @@
 	"title": "Browserify",
 	"author": "jfroffice",
 	"state": "published",
-	"date": "Sat Jan 26 2014 18:51:11 GMT+0100 (CET)",
-	"tags": ["NodeJS"],
+	"date": "26/01/2014",
+	"tags": ["NodeJS", "Browser"],
 	"lang": {
 		"fr_FR": "Browserify"
 	}

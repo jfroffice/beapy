@@ -56,12 +56,14 @@ cursor: pointer;
 display: none;
 }
 
-.sidebar nav li span {
+.sidebar nav li .md {
 border-radius: 2px;
 padding: 9px 12px;
+color: #EEE;
+
 }
 
-.sidebar nav li span:hover {
+.sidebar nav li .md:hover {
 color: #FFF;
 }
 
@@ -69,8 +71,9 @@ a {
 color: #00B7FF;
 }
 
-.sidebar nav.menu span {
+.sidebar nav.menu .md {
 background-color: #36afe2;
+text-decoration: none;
 }
 
 .sidebar nav.menu {
@@ -142,7 +145,7 @@ margin-right: auto;
 		width: auto;
 		padding: 0 15px;
 		border: none;
-		box-shadow: none;		
+		box-shadow: none;
 	}
 
 	.sidebar {

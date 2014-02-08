@@ -1,10 +1,24 @@
-(function($, marked, Prism, moment, DISQUS, history, undefined) {
+(function($, marked, Prism, DISQUS, history, undefined) {
+
+    var currentName;
+    
+    function setName(name) {
+        if (name === currentName) {
+            return;
+        }
+
+        currentName = name;
+
+        history.pushState({
+            state: name
+        }, name, '/#' + name);
+    }
 
     marked.setOptions({
         langPrefix: 'language-'
     });
 
-    function updateComment(name) {
+    function updateDisqus(name) {
         if (DISQUS) {
             DISQUS.reset({
                 reload: true,
@@ -16,12 +30,7 @@
         }
     }
 
-    function load($elm, name, cb) {
-
-        $('nav.menu li.current').removeClass('current').show();
-
-        $elm.addClass('current');
-
+    function load(name, cb) {
         $.get('./md/' + name, function(data) {
             cb(data);
         });
@@ -40,6 +49,20 @@
         return tmp;
     }
 
+    function formatDate(date) {
+        var months = "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
+            array = date.split('/');
+
+        return array[0] + ' ' + months[array[1] - 1] + ' ' + array[2];
+    }
+
+    function getMeta(files, name) {
+        for (var i=0; i < files.length; i++) {
+            if (files[i].name === name) {
+                return files[i].data;                
+            }
+        }
+    }
 
     function loadArticle(files, name) {
 
@@ -47,40 +70,30 @@
             name = $('.md').first().data('name');
         }
 
-        var dataFiles;
-        for (var i = 0; i < files.length; i++) {
-            if (files[i].name === name) {
-                dataFiles = files[i].data;
-            }
-        }
-        var $elm = $('.md[data-name="' + name + '"]').parent();
+        var meta = getMeta(files, name);        
+        
+        load(name, function(data) {
 
-        load($elm, name, function(data) {
-
-            $elm.hide();
-
-            history.pushState({
-                state: name
-            }, name, '/#' + name);
-
+            setName(name);
             document.title = 'CodeMoods - ' + name.replace('.md', '');
 
-            var header = renderHeader(dataFiles.lang.fr_FR, moment(dataFiles.date).format('LL'), dataFiles.tags);
+            var article = marked(data);
+            var header = renderHeader(meta.lang.fr_FR, formatDate(meta.date), meta.tags);
             $('header.current').html(header);
-
-            $('article.current').html(marked(data));
+            $('article.current').html(article);
             Prism.highlightAll();
-
-            updateComment(name);
+            updateDisqus(name);
         });
     }
 
-    function renderMenu(files) {
+    function renderMenu(files, newName) {
         var tmp = '<ul>';
 
-        for (var i = 0; i < files.length; i++) {
+        for (var i=0; i<files.length; i++) {
             var file = files[i];
-            tmp += '<li><span class="md" data-name="' + file.name + '">' + file.data.lang.fr_FR + '</span></li>';
+            if (file.name !== newName) {
+                tmp += '<li><a class="md" data-name="' + file.name + '" href="#' + file.name + '">' + file.data.lang.fr_FR + '</a>';
+            }
         }
 
         tmp += '</ul>';
@@ -91,7 +104,7 @@
 
         $.get('./data', function(files) {
 
-            $('.menu').html(renderMenu(files));
+            $('.menu').html(renderMenu(files, name));
 
             $('.md').on('click', function() {
                 loadArticle(files, $(this).data('name'));
@@ -101,13 +114,14 @@
         });
     }
 
+    $(window).bind("popstate", function(e) {
+        init(location.hash.slice(1));
+    });
+
     if (location.hash) {
         init(location.hash.slice(1));
     } else {
         init();
     }
 
-    // depend on current lang
-    moment.lang('fr');
-
-})(window.jQuery, window.marked, window.Prism, window.moment, window.DISQUS, window.history);
+})(window.jQuery, window.marked, window.Prism, window.DISQUS, window.history);
