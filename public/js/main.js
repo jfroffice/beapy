@@ -41,7 +41,7 @@
         tmp += '<div class="date">' + date + '</div>';
         tmp += '<ul class="tags">';
 
-        for (var i = 0; i < tags.length; i++) {
+        for (var i=0; i<tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
@@ -95,13 +95,11 @@
                 tmp += '<li><a class="md" data-name="' + file.name + '" href="#' + file.name + '">' + file.data.lang.fr_FR + '</a>';
             }
         }
-
-        tmp += '</ul>';
-        return tmp;
+        
+        return tmp + '</ul>';
     }
 
     function init(name) {
-
         $.get('./data', function(files) {
 
             $('.menu').html(renderMenu(files, name));
@@ -114,7 +112,7 @@
         });
     }
 
-    $(window).bind("popstate", function(e) {
+    $(window).bind("popstate", function() {
         init(location.hash.slice(1));
     });
 
