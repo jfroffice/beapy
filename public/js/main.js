@@ -1,6 +1,9 @@
-(function($, marked, Prism, DISQUS, history, undefined) {
+var disqus_shortname = 'jfroffice';
 
-    var currentName;
+(function($, marked, Prism, DISQUS, history, undefined) {
+    
+    var commentLoaded = true,
+        currentName;
     
     function setName(name) {
         if (name === currentName) {
@@ -17,19 +20,7 @@
     marked.setOptions({
         langPrefix: 'language-'
     });
-
-    function updateDisqus(name) {
-        if (DISQUS) {
-            DISQUS.reset({
-                reload: true,
-                config: function() {
-                    this.page.identifier = name;
-                    this.page.url = window.location.href;
-                }
-            });
-        }
-    }
-
+    
     function load(name, cb) {
         $.get('./md/' + name, function(data) {
             cb(data);
@@ -73,7 +64,6 @@
         var meta = getMeta(files, name);        
         
         load(name, function(data) {
-
             setName(name);
             document.title = 'CodeMoods - ' + name.replace('.md', '');
 
@@ -82,6 +72,8 @@
             $('header.current').html(header);
             $('article.current').html(article);
             Prism.highlightAll();
+
+            commentLoaded = false; // comments are now able to be loaded
             updateDisqus(name);
         });
     }
@@ -110,6 +102,35 @@
 
             loadArticle(files, name);
         });
+    }
+
+    // loading disqus comment only if user go at bottom of page
+    $(window).scroll(function() {
+       if(!commentLoaded && ($(window).scrollTop() + $(window).height() > $(document).height() - 300)) {
+                      
+           commentLoaded = true;           
+           
+           var dsq = document.createElement('script');
+           dsq.type = 'text/javascript';
+           dsq.async = true;
+           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+           (document.getElementsByTagName('body')[0]).appendChild(dsq); 
+
+           $('.comment').show();          
+       }
+    });
+
+    function updateDisqus(name) {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true,
+                config: function() {
+                    this.page.identifier = name;
+                    this.page.url = window.location.href;
+                }
+            });
+        }
     }
 
     $(window).bind("popstate", function() {
