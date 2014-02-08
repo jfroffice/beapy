@@ -23,6 +23,6 @@ node app.js
 Powered by
 ----------
 - [jQuery](https://github.com/jquery/jquery)
-- [marked](https://github.com/chjj/marked) (to render markdown file)
-- [prism](https://github.com/LeaVerou/prism) (to highlight code)
+- [marked](https://github.com/chjj/marked) (render markdown file)
+- [prism](https://github.com/LeaVerou/prism) (highlight code)
 - Disqus for comments
