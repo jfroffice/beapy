@@ -4,7 +4,7 @@ single-page diet blog engine rendering markdown file.
 
 light and fast is beautiful. 
 
-__v0.2.1__
+__v0.2.2__
 
 Install
 -------
