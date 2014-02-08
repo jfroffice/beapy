@@ -115,7 +115,7 @@ var disqus_shortname = 'jfroffice';
             dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
-            (document.getElementsByTagName('body')[0]).appendChild(dsq);
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
             $('.comment').show();
         }
