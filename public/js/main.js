@@ -88,9 +88,7 @@ var disqus_shortname = 'jfroffice';
     function init(name) {
         $.get('./data', function(files) {
 
-            if (!name) {
-                name = $('.md').first().data('name');
-            }
+            name = name || files[0].name;
 
             $('.menu').html(renderMenu(files, name));
 

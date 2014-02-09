@@ -40,14 +40,16 @@ app.get('/', function(req, res) {
 
 app.get('/data', data.browse);
 
-var cacheMarked = [];
+var cacheMarked = [],
+	DIR = __dirname + '/public/md/';
 
 app.get('/md/:file', function(req, res) {
 
 	var file = req.params.file;
 
 	if (!cacheMarked[file]) {
-		var data = fs.readFileSync(__dirname + '/public/md/' + file).toString();
+		// check if file exist !
+		var data = fs.readFileSync(DIR + file).toString();
 		cacheMarked[file] = marked(data);
 	}
 
