@@ -1,10 +1,10 @@
 Beapy
 =====
-single-page diet blog engine rendering markdown file.
+single-page minimalist blog engine rendering markdown file.
 
-light and fast is beautiful. 
+Light and fast is beautiful. 
 
-__v0.2.2__
+__v0.2.3__
 
 Install
 -------
@@ -22,7 +22,7 @@ node app.js
 
 Powered by
 ----------
-- [jQuery](https://github.com/jquery/jquery)
+- [Zepto](https://github.com/madrobby/zepto)
 - [marked](https://github.com/chjj/marked) (render markdown file)
 - [prism](https://github.com/LeaVerou/prism) (highlight code)
 - Disqus for comments
