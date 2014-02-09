@@ -40,10 +40,19 @@ app.get('/', function(req, res) {
 
 app.get('/data', data.browse);
 
+var cacheMarked = [];
+
 app.get('/md/:file', function(req, res) {
-	var data = fs.readFileSync(__dirname + '/public/md/' + req.params.file).toString();
+
+	var file = req.params.file;
+
+	if (!cacheMarked[file]) {
+		var data = fs.readFileSync(__dirname + '/public/md/' + file).toString();
+		cacheMarked[file] = marked(data);
+	}
+
 	res.set('Content-Type', 'text/html');
-	res.send(marked(data));	
+	res.send(cacheMarked[file]);	
 });
 
 http.createServer(app).listen(app.get('port'), function() {
