@@ -17,11 +17,8 @@ var disqus_shortname = 'jfroffice';
         }, name, '/#' + name);
     }
 
-    marked.setOptions({
-        langPrefix: 'language-'
-    });
-
     function load(files, name, cb) {
+
         $.get('./md/' + name, function(data) {
             cb(data);
         });
@@ -63,9 +60,11 @@ var disqus_shortname = 'jfroffice';
     }
 
     function loadArticle(files, name) {
+
         load(files, name, function(data) {
                    
-            $('article.current').html(marked(data));
+            $('article.current').html(data);
+
             Prism.highlightAll();
 
             commentLoaded = false; // comments are now able to be loaded
