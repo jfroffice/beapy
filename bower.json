@@ -1,10 +1,9 @@
 {
   "name": "beapy",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "dependencies": {
-    "jquery": "*",    
+    "zepto": "*",    
     "marked": "*",
-    "prism": "gh-pages",
-    "moment": "*"
+    "prism": "gh-pages"
   }
 }

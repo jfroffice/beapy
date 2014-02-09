@@ -140,4 +140,4 @@ var disqus_shortname = 'jfroffice';
         init();
     }
 
-})(window.jQuery, window.marked, window.Prism, window.DISQUS, window.history);
+})(window.Zepto, window.marked, window.Prism, window.DISQUS, window.history);
