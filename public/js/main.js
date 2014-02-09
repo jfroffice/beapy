@@ -21,10 +21,17 @@ var disqus_shortname = 'jfroffice';
         langPrefix: 'language-'
     });
 
-    function load(name, cb) {
+    function load(files, name, cb) {
         $.get('./md/' + name, function(data) {
             cb(data);
         });
+
+        var meta = getMeta(files, name);
+
+        setName(name);
+        document.title = 'CodeMoods - ' + name.replace('.md', '');
+        var header = renderHeader(meta.lang.fr_FR, formatDate(meta.date), meta.tags);
+        $('header.current').html(header);
     }
 
     function renderHeader(title, date, tags) {
@@ -56,17 +63,9 @@ var disqus_shortname = 'jfroffice';
     }
 
     function loadArticle(files, name) {
-
-        var meta = getMeta(files, name);
-
-        load(name, function(data) {
-            setName(name);
-            document.title = 'CodeMoods - ' + name.replace('.md', '');
-
-            var article = marked(data);
-            var header = renderHeader(meta.lang.fr_FR, formatDate(meta.date), meta.tags);
-            $('header.current').html(header);
-            $('article.current').html(article);
+        load(files, name, function(data) {
+                   
+            $('article.current').html(marked(data));
             Prism.highlightAll();
 
             commentLoaded = false; // comments are now able to be loaded
@@ -137,9 +136,7 @@ var disqus_shortname = 'jfroffice';
         init(location.hash.slice(1));
     });
 
-    if (location.hash) {
-        init(location.hash.slice(1));
-    } else {
+    if (!location.hash) {      
         init();
     }
 
