@@ -57,10 +57,6 @@ var disqus_shortname = 'jfroffice';
 
     function loadArticle(files, name) {
 
-        if (!name) {
-            name = $('.md').first().data('name');
-        }
-
         var meta = getMeta(files, name);
 
         load(name, function(data) {
@@ -93,6 +89,10 @@ var disqus_shortname = 'jfroffice';
 
     function init(name) {
         $.get('./data', function(files) {
+
+            if (!name) {
+                name = $('.md').first().data('name');
+            }
 
             $('.menu').html(renderMenu(files, name));
 

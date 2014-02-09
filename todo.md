@@ -1,5 +1,6 @@
 - supprimer la dépendance marked.js à faire coté serveur
-- tant qu'on ait pas à la fin de l'article inutile de charger DISQUS
 - tentative de suppression de jQuery
 - garder le rendu d'un article dans la page afin d'economiser son rechargement ultérieur
+
+
 - problème de rendu responsive lorsque l'on a plusieurs tags
