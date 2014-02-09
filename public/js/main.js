@@ -62,7 +62,7 @@ var disqus_shortname = 'jfroffice';
     function loadArticle(files, name) {
 
         load(files, name, function(data) {
-                   
+
             $('article.current').html(data);
 
             Prism.highlightAll();
@@ -135,7 +135,7 @@ var disqus_shortname = 'jfroffice';
         init(location.hash.slice(1));
     });
 
-    if (!location.hash) {      
+    if (!location.hash) {
         init();
     }
 
