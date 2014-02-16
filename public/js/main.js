@@ -99,6 +99,8 @@ var disqus_shortname = 'jfroffice';
 
     function loadArticle(files, name) {
 
+        $('.sidebar').addClass('clicked');
+
         load(files, name, function(data) {
 
             $('article.current').html(data);
@@ -164,6 +166,10 @@ var disqus_shortname = 'jfroffice';
 
     $(window).bind("popstate", function() {
         init(location.hash.slice(1));
+    });
+
+    $('.toggle').click(function() {
+        $(this).parent().toggleClass('clicked');
     });
 
     if (!location.hash) {
