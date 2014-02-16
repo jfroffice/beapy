@@ -3,7 +3,7 @@ var disqus_shortname = 'jfroffice';
 (function($, Prism, DISQUS, history, LANG, undefined) {
 
     var _commentLoaded = true,
-        _suffixe = (LANG == 'en') ? '.en' : '',
+        _suffixe = (LANG === 'en') ? '.en' : '',
         _name;
 
     function setName(name) {
@@ -12,7 +12,9 @@ var disqus_shortname = 'jfroffice';
         }
 
         _name = name;
-        history.pushState({ state: name }, name, '/#' + name);
+        history.pushState({
+            state: name
+        }, name, '/#' + name);
     }
 
     function load(files, name, cb) {
@@ -20,14 +22,14 @@ var disqus_shortname = 'jfroffice';
         $.ajax({
             url: './md/' + name,
             type: 'GET',
-            success: function(data){ 
+            success: function(data) {
                 cb(data);
             },
             error: function(data) {
                 location.href = '/';
             }
         });
-        
+
         var meta = getMeta(files, name);
 
         setName(name);
@@ -67,9 +69,9 @@ var disqus_shortname = 'jfroffice';
     function ordinal(number) {
         var b = number % 10,
             output = (toInt(number % 100 / 10) === 1) ? 'th' :
-            (b === 1) ? 'st' :
-            (b === 2) ? 'nd' :
-            (b === 3) ? 'rd' : 'th';
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
         return number + output;
     }
 
@@ -81,10 +83,10 @@ var disqus_shortname = 'jfroffice';
         if (LANG === 'fr') {
             months = "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_");
             return array[0] + ' ' + months[array[1] - 1] + ' ' + array[2];
-        } else {            
+        } else {
             months = "january_february_march_april_may_june_july_august_september_october_november_december".split("_");
             return months[array[1] - 1] + ' ' + ordinal(array[0]) + ' ' + array[2];
-        }        
+        }
     }
 
     function getMeta(files, name) {
