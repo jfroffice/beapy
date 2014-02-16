@@ -2,8 +2,8 @@ Approche simple
 ---------------
 Pour gérer cet évènement, vous déclarez un listener sur l'évènement __resize__ (ci-dessous avec jQuery)
 ```javascript
-$(window).on('resize', function() {
-	// traitement
+$(window).on('trueresize', function() {
+    // traitement
 });
 ```
 
@@ -38,8 +38,6 @@ Ce problème a été remonté par l'excellent [__@paulirish__](https://twitter.c
 Suppression des évènements parasites
 ------------------------------------
 [jquery.trueresize](https://github.com/jfroffice/jquery.trueresize) est une implémentation allégée _(147bytes)_ permettant de résoudre ce problème.
-
-Cette librairie vous autorise jusqu'à 50 images par seconde.
 
 Utilisation
 -----------

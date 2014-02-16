@@ -1,33 +1,38 @@
 var disqus_shortname = 'jfroffice';
 
-(function($, marked, Prism, DISQUS, history, undefined) {
+(function($, Prism, DISQUS, history, LANG, undefined) {
 
-    var commentLoaded = true,
-        currentName;
+    var _commentLoaded = true,
+        _suffixe = (LANG == 'en') ? '.en' : '',
+        _name;
 
     function setName(name) {
-        if (name === currentName) {
+        if (name === _name) {
             return;
         }
 
-        currentName = name;
-
-        history.pushState({
-            state: name
-        }, name, '/#' + name);
+        _name = name;
+        history.pushState({ state: name }, name, '/#' + name);
     }
 
     function load(files, name, cb) {
 
-        $.get('./md/' + name, function(data) {
-            cb(data);
+        $.ajax({
+            url: './md/' + name,
+            type: 'GET',
+            success: function(data){ 
+                cb(data);
+            },
+            error: function(data) {
+                location.href = '/';
+            }
         });
-
+        
         var meta = getMeta(files, name);
 
         setName(name);
         document.title = 'CodeMoods - ' + name.replace('.md', '');
-        var header = renderHeader(meta.lang.fr_FR, formatDate(meta.date), meta.tags);
+        var header = renderHeader(meta.lang[LANG].title, formatDate(meta.date), meta.tags);
         $('header.current').html(header);
     }
 
@@ -44,11 +49,42 @@ var disqus_shortname = 'jfroffice';
         return tmp;
     }
 
-    function formatDate(date) {
-        var months = "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
-            array = date.split('/');
+    function toInt(argumentForCoercion) {
+        var coercedNumber = +argumentForCoercion,
+            value = 0;
 
-        return array[0] + ' ' + months[array[1] - 1] + ' ' + array[2];
+        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
+            if (coercedNumber >= 0) {
+                value = Math.floor(coercedNumber);
+            } else {
+                value = Math.ceil(coercedNumber);
+            }
+        }
+
+        return value;
+    }
+
+    function ordinal(number) {
+        var b = number % 10,
+            output = (toInt(number % 100 / 10) === 1) ? 'th' :
+            (b === 1) ? 'st' :
+            (b === 2) ? 'nd' :
+            (b === 3) ? 'rd' : 'th';
+        return number + output;
+    }
+
+    function formatDate(date) {
+
+        var array = date.split('/'),
+            months;
+
+        if (LANG === 'fr') {
+            months = "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_");
+            return array[0] + ' ' + months[array[1] - 1] + ' ' + array[2];
+        } else {            
+            months = "january_february_march_april_may_june_july_august_september_october_november_december".split("_");
+            return months[array[1] - 1] + ' ' + ordinal(array[0]) + ' ' + array[2];
+        }        
     }
 
     function getMeta(files, name) {
@@ -67,7 +103,7 @@ var disqus_shortname = 'jfroffice';
 
             Prism.highlightAll();
 
-            commentLoaded = false; // comments are now able to be loaded
+            _commentLoaded = false; // comments are now able to be loaded
             updateDisqus(name);
         });
     }
@@ -78,7 +114,7 @@ var disqus_shortname = 'jfroffice';
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
             if (file.name !== newName) {
-                tmp += '<li><a class="md" data-name="' + file.name + '" href="#' + file.name + '">' + file.data.lang.fr_FR + '</a>';
+                tmp += '<li><a class="md" href="#' + file.name + '">' + file.data.lang[LANG].title + '</a>';
             }
         }
 
@@ -89,12 +125,7 @@ var disqus_shortname = 'jfroffice';
         $.get('./data', function(files) {
 
             name = name || files[0].name;
-
             $('.menu').html(renderMenu(files, name));
-
-            $('.md').on('click', function() {
-                loadArticle(files, $(this).data('name'));
-            });
 
             loadArticle(files, name);
         });
@@ -102,9 +133,9 @@ var disqus_shortname = 'jfroffice';
 
     // loading disqus comment only if user go at bottom of page
     $(window).scroll(function() {
-        if (!commentLoaded && ($(window).scrollTop() + $(window).height() > $(document).height() - 300)) {
+        if (!_commentLoaded && ($(window).scrollTop() + $(window).height() > $(document).height() - 300)) {
 
-            commentLoaded = true;
+            _commentLoaded = true;
 
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
@@ -137,4 +168,4 @@ var disqus_shortname = 'jfroffice';
         init();
     }
 
-})(window.Zepto, window.marked, window.Prism, window.DISQUS, window.history);
+})(window.Zepto, window.Prism, window.DISQUS, window.history, window.LANG);

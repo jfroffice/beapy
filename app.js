@@ -11,18 +11,30 @@ marked.setOptions({
 	langPrefix: 'language-'
 });
 
-if ('development' == app.get('env')) {
-	maxAge = 1000;
-} else {
-    maxAge = 2592000000; //30 * 24 * 60 * 60 * 1000;
-}
-
 app.set('port', process.env.PORT || 6002);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.favicon(null));
 app.use(express.compress());
 app.use(express.logger('dev'));
+
+if ('development' == app.get('env')) {
+	maxAge = 1000;
+
+	app.use(function noCachePlease(req, res, next) {
+		if (req.url === '/' || req.url === '/#resize') {
+		  res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+		  res.header("Pragma", "no-cache");
+		  res.header("Expires", 0);
+		}
+
+		next();
+	});
+
+} else {
+    maxAge = 2592000000; //30 * 24 * 60 * 60 * 1000;
+}
+
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -32,33 +44,72 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
+function isFr(req) {
+    var headers = req.headers['accept-language'];
+    if (headers) {
+        var lang = headers.split(',');
+        if (lang && lang.length > 0) {
+            if (lang[0].indexOf('fr') != -1) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+var translate = {
+	fr: {
+		'subtitle': 'Ce blog est propulsé par ',
+		'disqus': 'commentaires propulsé par '
+	},
+	en: {
+		'subtitle': 'This blog is powered by ',
+		'disqus': 'comments powered by '
+	}
+};
+
 app.get('/', function(req, res) {
+
+	var lang = isFr(req) ? 'fr' : 'en';
+
 	res.render('index', {
-		env: app.get('env')
+		env: app.get('env'),
+		lang: lang,
+		t: translate[lang]
 	});
 });
 
 app.get('/data', data.browse);
 
-var cacheMarked = [],
-	DIR = __dirname + '/public/md/';
+var DIR = __dirname + '/public/md/';
 
 app.get('/md/:file', function(req, res) {
 
-	var file = req.params.file;
+	var file = req.params.file,
+		ext = isFr(req) ? '.md' : '.en.md',
+		path = DIR + file + ext,
+		data;
 
-	if (!cacheMarked[file]) {
-		// check if file exist !
-		var data = fs.readFileSync(DIR + file).toString();
-		cacheMarked[file] = marked(data);
+	console.log(path);
+
+	if (fs.existsSync(path)) {
+		data = fs.readFileSync(path).toString();
 	}
 
 	res.set('Content-Type', 'text/html');
-	res.send(cacheMarked[file]);	
+
+	if ('development' == app.get('env')) {
+		res.set('Cache-Control', 'no-cache');
+	}
+
+	if (data) {			
+		res.send(marked(data));	
+	} else {
+		res.send(404, 'Sorry, we cannot find that!')
+	}	
 });
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port') + ' in ' + app.get('env'));
 });
-
-module.exports = app;

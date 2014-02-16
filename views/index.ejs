@@ -14,7 +14,7 @@
   <div class="page">
     <section class="header">
       <h1 class="title">Coding Moods</h1>
-      <p>Ce blog est propulsé par <a href='https://github.com/jfroffice/beapy'>Beapy BETA</a>.</p>
+      <p><%= t.subtitle %><a href='https://github.com/jfroffice/beapy'>Beapy BETA</a>.</p>
     </section>
     <section class="sidebar">
         <nav class="menu"></nav>
@@ -27,10 +27,11 @@
     </section>
     <section class="comment">      
       <div id="disqus_thread"></div>
-      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      <a href="http://disqus.com" class="dsq-brlink"><%= t.disqus %><span class="logo-disqus">Disqus</span></a>
     </section>
-  </div>
+  </div>  
   <script src="components/zepto/zepto.min.js"></script>
+  <script>var LANG = "<%= lang %>";</script>
   <% if (env === 'development') { %>  
   <script src="components/prism/prism.js"></script>
   <script src="js/main.js"></script>

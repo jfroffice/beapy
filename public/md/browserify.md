@@ -2,14 +2,16 @@
 
 Introduction
 ============
-[Browserify](https://github.com/substack/node-browserify) permet d'utiliser dans le navigateur des modules dit [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1).
+[Browserify](https://github.com/substack/node-browserify) permet d'utiliser des modules dit [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) directement dans le navigateur.
 
-Les modules CommonJS permettent de résoudre les problématiques de dépendances Javascript.
+Ces modules permettent de résoudre les problématiques de dépendances qu'on peut rencontrer fréquemment dans le monde du Javascript.
 
-Chaque module doit exporter explicitement les variables qu'il souhaite exposer, et il doit également définir explicitement les dépendances qu'il souhaite utiliser.
+Chaque dépendance est encapsulée. Les variables exposées par un module sont définies explicitement.
 
 Dans la pratique
 ================
+
+Exemple d'un module CommonJS
 
 __module.js__
 ```javascript
@@ -18,28 +20,23 @@ exports.doSomething = function(options) {
 };	
 ```
 
+et son utilisation
+
 __main.js__
 ```javascript
 var module = require('./module');
 module.doSomething();	
 ```
 
-Noter l'utilisation des mots-clefs __exports.__ pour exposer une variable et __require()__ pour importer une dépendance.
+On utile le mot-clef __exports__ pour exposer une variable (en l'occurence une fonction dans notre cas) et la méthode __require()__ pour importer une dépendance.
 
-générer ensuite le fichier __bundle.js__ en utilisant la commande __browserify__.
+On génére le fichier __bundle.js__ qui rassemblera tout votre code en utilisant la commande __browserify__.
 
 ```javascript
 browserify main.js > bundle.js
 ```
 
-Ce fichier est une "pseudo" concaténation des deux fichiers, vous pouvez l'inclure dans votre page.
-
-__index.html__
-```markup
-<script src="js/bundle.js"></script>	
-```
-
-Voici le fichier qui a été généré.
+Le fichier __bundle.js__ est une "pseudo" concaténation des deux fichiers.
 
 __bundle.js__
 ```javascript
@@ -56,78 +53,53 @@ exports.doSomething = function() {
 };	
 ```
 
-Le fichier est illisible et inexploitable pour le débogage. Mais browserify fait son travail, le code est fonctionnel !
+Vous pouvez l'inclure dans votre page comme ci-dessous.
+
+__index.html__
+```markup
+<script src="js/bundle.js"></script>	
+```
+
+
+Le fichier __bundle.js__ est inexploitable pour le débogage. Mais browserify a fait son travail et le code est néanmoins fonctionnel.
+
+On est bien loin de la complexité de déclaration des modules avec [RequireJS](http://requirejs.org/).
 
 
 Comment travailler avec Browserify ?
 ====================================
 
-Il est difficile d'imaginer pour le moment qu'il faille relancer la compilation à chaque fois pour voir si notre code fonctionne.
+Comment utiliser browserify dans votre environnement de dev ou dans votre workflow ?
 
 1ère solution
 =============
 
-Utiliser la commander _--debug_ de browserify.
+On peut utiliser le paramètre _--debug_ de browserify.
 
 ```javascript
 browserify main.js --debug > bundle.js
 ```
 
-Celle-ci va nous permettre de générer des meta-données dit "SourceMapping" qui vont référencer nos fichiers sources.
+Cela va permettre de générer des meta-données dit "SourceMapping" permettant de référencer nos fichiers sources.
 
-Les meta-données sont visibles en bas du fichier bundle.js.
+Les meta-données pourront être exploiter par la suite pour un débogage éventuel.
 
 __bundle.js__
 ```javascript
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXJhdGVkLmpzIiwic291cmNl
+# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXJhdGVkLmpzIiwic291cmNl
 ```
 
-En activant les "JS SourceMap" dans Chrome, nous pouvons voir nos fichiers sources initials.
+En activant les "JS SourceMap" dans Chrome, on peut voir nos fichiers sources.
 
 ![Utilisation des JS SourceMap dans Chrome](../md/img/browserify01.jpg)
 
-Attention, ces données doivent rester accessibles exclusement pour le debug et non en production car elles contiennent le chemin absolut de vos fichiers.
+Attention, ces données doivent rester visible exclusement pour le debug.
 
 
 2ème solution
 =============
 
-Utiliser un proxy qui va faire la conversion __browserify__ à la volée.
-
-Les deux meilleurs protagonistes semblent être :
-
-- [node-enchilada](https://github.com/defunctzombie/node-enchilada)
-
-- [browserify-middleware](https://github.com/ForbesLindesay/browserify-middleware)
-
-Il fonctionne tout les deux avec [ExpressJS](http://expressjs.com/).
-
-__index.html__
-```markup
-<script src="bundle.js"></script>	
-```
-
-__app.js__
-```javascript
-var browserify = require('browserify-middleware');
-
-app.get('/bundle.js', browserify(path.join(__dirname, 'public/js/bundle.js')));
-```
-
-Cela fonctionne bien la première fois.
-
-Puis, lorsqu'on modifie un des fichiers sources, il n'est pas pris en compte.
-
-Le cache ne semble pas être correctement géré. La même problématique est rencontrée avec 'node-enchilada'.
-
-Cette 2éme solution est écartée.
-
-
-
-3ème solution
-=============
-
-Utiliser [Grunt](http://gruntjs.com/) et son plugin [grunt-browserify](https://github.com/jmreidy/grunt-browserify) pour recompiler les fichiers à la volée.
+On peut utiliser [Grunt](http://gruntjs.com/) et son plugin [grunt-browserify](https://github.com/jmreidy/grunt-browserify) pour compiler les fichiers à la volée.
 
 
 __index.html__
@@ -156,14 +128,14 @@ module.exports = function(grunt) {
 };
 ```
 
-Dès qu'un fichier est modifié dans le répertoire "public/js/**/*.js", la tâche "browserify", est executée.
+Dès que vous modifiez un fichier dans le répertoire "public/js/**/*.js", la tâche "browserify" est executée.
 
 
 Conclusion
 ==========
 
-L'intégration de __browserify__ dans votre environnement de developpement peut être délicate mais elle est possible.
+L'intégration de __browserify__ dans votre environnement de dev est assez simple.
 
-Retener l'utilisation du plugin __grunt-browserify__, qui simplifie son intégration.
+N'attendez donc plus pour bénéficer des modules CommonJS.
 
-N'attentez plus pour bénéficer des modules CommonJS et maîtriser vos dépendances JS.
+Vous pourrez ainsi mieux gérer vos dépendances et donc la réussite de vos projets.

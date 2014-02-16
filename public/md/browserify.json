@@ -5,6 +5,11 @@
 	"date": "26/01/2014",
 	"tags": ["NodeJS", "Browser"],
 	"lang": {
-		"fr_FR": "Browserify"
+		"fr": {
+			"title": "Introduction à Browserify"
+		},
+		"en": {
+			"title": "How to start with Browserify ?"
+		}
 	}
 }

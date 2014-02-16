@@ -1,10 +1,14 @@
-{
-	"title": "Beware of the Resize event",
+{	
 	"author": "jfroffice",
 	"state": "published",
 	"date": "01/08/2013",
 	"tags": ["jQuery"],
 	"lang": {
-		"fr_FR": "Méfiez-vous de l'évènement Resize"
+		"fr": {
+			"title": "Méfiez-vous de l'évènement Resize"
+		},
+		"en": {
+			"title": "Beware of the Resize event"
+		}
 	}
 }
