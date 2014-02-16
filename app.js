@@ -4,6 +4,7 @@ var express = require('express'),
 	marked = require('marked'),
 	path = require('path'),
 	fs = require('fs'),
+	DIR = __dirname + '/public/md/',
 	app = express(),
 	maxAge;
 
@@ -18,27 +19,19 @@ app.use(express.favicon(null));
 app.use(express.compress());
 app.use(express.logger('dev'));
 
-if ('development' == app.get('env')) {
-	maxAge = 1000;
-
-	app.use(function noCachePlease(req, res, next) {
-		if (req.url === '/' || req.url === '/#resize') {
-		  res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-		  res.header("Pragma", "no-cache");
-		  res.header("Expires", 0);
-		}
-
-		next();
-	});
-
-} else {
+if ('development' !== app.get('env')) {
     maxAge = 2592000000; //30 * 24 * 60 * 60 * 1000;
 }
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')), { maxAge: maxAge });
+
+if ('development' == app.get('env')) {
+	app.use(express.static(path.join(__dirname, 'public')));
+} else {
+	app.use(express.static(path.join(__dirname, 'public')), { maxAge: maxAge });
+}
 
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
@@ -82,16 +75,12 @@ app.get('/', function(req, res) {
 
 app.get('/data', data.browse);
 
-var DIR = __dirname + '/public/md/';
-
 app.get('/md/:file', function(req, res) {
 
 	var file = req.params.file,
 		ext = isFr(req) ? '.md' : '.en.md',
 		path = DIR + file + ext,
 		data;
-
-	console.log(path);
 
 	if (fs.existsSync(path)) {
 		data = fs.readFileSync(path).toString();
