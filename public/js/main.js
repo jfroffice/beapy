@@ -25,7 +25,7 @@ var disqus_shortname = 'jfroffice';
             success: function(data) {
                 cb(data);
             },
-            error: function(data) {
+            error: function() {
                 location.href = '/';
             }
         });
@@ -39,9 +39,9 @@ var disqus_shortname = 'jfroffice';
     }
 
     function renderHeader(title, date, tags) {
-        var tmp = '<div class="meta-head">';
-        tmp += '<div class="date">' + date + '</div>';
-        tmp += '<ul class="tags">';
+        var tmp = '<div class="meta-head">',
+            tmp += '<div class="date">' + date + '</div>',
+            tmp += '<ul class="tags">';
 
         for (var i = 0; i < tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
@@ -52,14 +52,14 @@ var disqus_shortname = 'jfroffice';
     }
 
     function toInt(argumentForCoercion) {
-        var coercedNumber = +argumentForCoercion,
+        var cNumber = +argumentForCoercion,
             value = 0;
 
-        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
-            if (coercedNumber >= 0) {
-                value = Math.floor(coercedNumber);
+        if (cNumber !== 0 && isFinite(cNumber)) {
+            if (cNumber >= 0) {
+                value = Math.floor(cNumber);
             } else {
-                value = Math.ceil(coercedNumber);
+                value = Math.ceil(cNumber);
             }
         }
 
