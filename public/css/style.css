@@ -4,7 +4,7 @@ margin: 0;
 }
 
 h1 {
-	font-size: 24px;
+font-size: 24px;
 }
 
 .page {
@@ -14,7 +14,7 @@ width: 900px;
 margin: 0 auto;
 border: 1px solid #DDD;
 box-shadow: 0 0 8px #DDD;
-background-color: #fff;
+background-color: #FFF;
 }
 
 .header {
@@ -158,12 +158,13 @@ display: none;
 		box-shadow: none;
 	}
 
-	.sidebar {		
+	.sidebar {
 		border: none;
 		box-shadow: none;
-		background-color: #FAFAFA;
+		background-color: #36afe2;
 		top: 0;
 		right: 0;
+		font-size: 15px;
 		border: 1px solid #EEE;
 		box-shadow: 0 0 1px #EEE;
 	}
@@ -173,19 +174,22 @@ display: none;
 		right: 10px;
 		position: absolute;
 		width: 32px;
-		height: 28px;
-		background-image: url('/img/toggle.png');
+		height: 32px;
+		background-image: url('/img/toggle-white.png');
 		float: right;
 		cursor: pointer;
 	}
 
-	.sidebar.clicked {		
+	.sidebar.clicked {
 		height: 0;
 		background-color: transparent;
 	}
 
+	.sidebar.clicked .toggle {
+		background-image: url('/img/toggle.png');
+	}
+
 	.sidebar.clicked > .menu {
-		transition: all 2s ease;		
 		display: none;
 	}
 
@@ -195,18 +199,14 @@ display: none;
 	}
 
 	.sidebar nav li .md {
-		color: #555;
+		color: #EEE;
 	}
 
 	.sidebar nav.menu {
 		margin-right: 50px;
 	}
 
-	.sidebar nav.menu .md {
-		background-color: transparent;
-	}
-
 	.sidebar nav li .md:hover {
-		color: #000;
+		color: #FFF;
 	}
 }

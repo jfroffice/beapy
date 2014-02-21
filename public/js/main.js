@@ -39,16 +39,14 @@ var disqus_shortname = 'jfroffice';
     }
 
     function renderHeader(title, date, tags) {
-        var tmp = '<div class="meta-head">',
-            tmp += '<div class="date">' + date + '</div>',
-            tmp += '<ul class="tags">';
+        var tmp = '<div class="meta-head">';
+        tmp += '<div class="date">' + date + '</div><ul class="tags">';
 
         for (var i = 0; i < tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
-        tmp += '</ul></div><h1>' + title + '</h1>';
-        return tmp;
+        return tmp + '</ul></div><h1>' + title + '</h1>';
     }
 
     function toInt(argumentForCoercion) {
@@ -103,7 +101,7 @@ var disqus_shortname = 'jfroffice';
 
         load(files, name, function(data) {
 
-            $('article.current').html(data);
+            $('.content article').html(data);
 
             Prism.highlightAll();
 
