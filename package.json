@@ -1,15 +1,16 @@
 {
   "name": "beapy",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "private": false,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.2.3",
+    "express": "*",
     "ejs": "*",
+    "marked": "*",
     "readdirp": "*",
-    "lodash": "~1.2.1"
+    "lodash": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
