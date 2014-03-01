@@ -5,7 +5,7 @@
 	"tags": ["NodeJS", "Grunt"],
 	"lang": {
 		"fr": {
-			"title": "Grunt par la pratique"
+			"title": "Introduction à Grunt jusqu'au LiveReload"
 		},
 		"en": {
 			"title": "Front End Stack using Grunt"
