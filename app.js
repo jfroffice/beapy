@@ -6,8 +6,17 @@ var express = require('express'),
 	fs = require('fs'),
 	DIR = __dirname + '/public/md/',
 	app = express(),
-	maxAge;
-
+	TRANSLATE = {
+		fr: {
+			'subtitle': 'Ce blog est propulsé par ',
+			'disqus': 'commentaires propulsé par '
+		},
+		en: {
+			'subtitle': 'This blog is powered by ',
+			'disqus': 'comments powered by '
+		}
+	};
+	
 marked.setOptions({
 	langPrefix: 'language-'
 });
@@ -19,23 +28,16 @@ app.use(express.favicon(null));
 app.use(express.compress());
 app.use(express.logger('dev'));
 
-if ('development' !== app.get('env')) {
-    maxAge = 2592000000; //30 * 24 * 60 * 60 * 1000;
-}
-
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 
 if ('development' == app.get('env')) {
+	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 } else {
-	app.use(express.static(path.join(__dirname, 'public')), { maxAge: maxAge });
-}
-
-if ('development' == app.get('env')) {
-	app.use(express.errorHandler());
+	app.use(express.static(path.join(__dirname, 'public')), { maxAge: 2592000000 }); //30 * 24 * 60 * 60 * 1000;
 }
 
 function isFr(req) {
@@ -52,17 +54,6 @@ function isFr(req) {
     return false;
 }
 
-var translate = {
-	fr: {
-		'subtitle': 'Ce blog est propulsé par ',
-		'disqus': 'commentaires propulsé par '
-	},
-	en: {
-		'subtitle': 'This blog is powered by ',
-		'disqus': 'comments powered by '
-	}
-};
-
 app.get('/', function(req, res) {
 
 	var lang = isFr(req) ? 'fr' : 'en';
@@ -70,7 +61,7 @@ app.get('/', function(req, res) {
 	res.render('index', {
 		env: app.get('env'),
 		lang: lang,
-		t: translate[lang]
+		t: TRANSLATE[lang]
 	});
 });
 

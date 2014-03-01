@@ -5,7 +5,7 @@ var path = require("path"),
 
 exports.browse = function(req, res) {
 
-	var files = []
+	var files = [];
 
 	readdirp({
 		root: root,
