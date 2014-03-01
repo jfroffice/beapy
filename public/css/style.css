@@ -9,6 +9,7 @@ font-size: 24px;
 
 .container {
 padding: 0 30px;
+box-sizing: border-box;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 width: 900px;
 margin: 0 auto;
@@ -108,7 +109,6 @@ color: #FFF;
 background-color: #c03669;
 padding: 9px 10px;
 border-radius: 3px;
-display: inline-block;
 }
 
 header.current ul {
@@ -168,8 +168,6 @@ display: none;
 	}
 
 	.sidebar {
-		border: none;
-		box-shadow: none;
 		background-color: #36afe2;
 		top: 0;
 		right: 0;
@@ -189,19 +187,6 @@ display: none;
 		cursor: pointer;
 	}
 
-	.sidebar.clicked {
-		height: 0;
-		background-color: transparent;
-	}
-
-	.sidebar.clicked .toggle {
-		background-image: url('/img/toggle.png');
-	}
-
-	.sidebar.clicked > .menu {
-		display: none;
-	}
-	
 	.sidebar nav ul {
 		margin-bottom: 0;	
 	}	
@@ -222,20 +207,23 @@ display: none;
 	.sidebar nav li .md:hover {
 		color: #FFF;
 	}
+
+	.sidebar--clicked {
+		height: 0;
+		background-color: transparent;
+	}
+
+	.sidebar--clicked .toggle {
+		background-image: url('/img/toggle.png');
+	}
+
+	.sidebar--clicked > .menu {
+		display: none;
+	}
 }
 
 @media (max-width: 480px) {
 	.sidebar {
 		font-size: 13px;
 	}
-
-	/*.tags {
-		float: none;
-		padding-left: 0;
-		margin-top: 20px;
-	}
-
-	.date {
-		float: none;
-	}*/
 }

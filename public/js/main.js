@@ -97,7 +97,7 @@ var disqus_shortname = 'jfroffice';
 
     function loadArticle(files, name) {
 
-        $('.sidebar').addClass('clicked');
+        $('.sidebar').addClass('sidebar--clicked');
 
         load(files, name, function(data) {
 
@@ -167,7 +167,7 @@ var disqus_shortname = 'jfroffice';
     });
 
     $('.toggle').click(function() {
-        $(this).parent().toggleClass('clicked');
+        $(this).parent().toggleClass('sidebar--clicked');
     });
 
     if (!location.hash) {
