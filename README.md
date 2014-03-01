@@ -2,9 +2,7 @@ Beapy
 =====
 single-page minimalist blog engine rendering markdown file.
 
-Light and fast is beautiful. 
-
-__v0.2.3__
+__v0.3.0__
 
 Install
 -------
