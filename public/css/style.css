@@ -7,7 +7,7 @@ h1 {
 font-size: 24px;
 }
 
-.page {
+.container {
 padding: 0 30px;
 font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 width: 900px;
@@ -17,14 +17,19 @@ box-shadow: 0 0 8px #DDD;
 background-color: #FFF;
 }
 
-.header {
-border-bottom: 1px solid #888;
+.container > header {
+border-bottom: 1px solid #AAA;
 padding-bottom: 8px;
 }
 
 .title {
 font-size: 42px;
 color: #c03669;
+}
+
+.subtitle {
+color: #777;
+font-size: 12px;
 }
 
 .content {
@@ -83,6 +88,10 @@ text-decoration: none;
 
 .sidebar nav.menu {
 margin-bottom: 10px;
+}
+
+.sidebar nav.menu ul {
+margin: 12px 0;
 }
 
 .sidebar nav.tags span {
@@ -151,7 +160,7 @@ display: none;
 	background-color: #fff;
 	}
 
-	.page {
+	.container {
 		width: auto;
 		padding: 0 15px;
 		border: none;
@@ -164,7 +173,7 @@ display: none;
 		background-color: #36afe2;
 		top: 0;
 		right: 0;
-		font-size: 13px;
+		font-size: 16px;
 		border: 1px solid #EEE;
 		box-shadow: 0 0 1px #EEE;
 	}
@@ -192,10 +201,14 @@ display: none;
 	.sidebar.clicked > .menu {
 		display: none;
 	}
+	
+	.sidebar nav ul {
+		margin-bottom: 0;	
+	}	
 
 	.sidebar nav li {
 		margin: 0;
-		padding: 5px 10px;
+		padding: 10px;
 	}
 
 	.sidebar nav li .md {
@@ -209,4 +222,20 @@ display: none;
 	.sidebar nav li .md:hover {
 		color: #FFF;
 	}
+}
+
+@media (max-width: 480px) {
+	.sidebar {
+		font-size: 13px;
+	}
+
+	/*.tags {
+		float: none;
+		padding-left: 0;
+		margin-top: 20px;
+	}
+
+	.date {
+		float: none;
+	}*/
 }

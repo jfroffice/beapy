@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Coding Moods</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <% if (env === 'development') { %>
@@ -11,15 +12,15 @@
   <% } %>
 </head>
 <body>
-  <div class="page">
+  <div class="container">
     <section class="sidebar clicked">
       <a class="toggle"></a>
       <nav class="menu"></nav>
     </section>
-    <section class="header">
+    <header>
       <h1 class="title">Coding Moods</h1>
-      <p><%= t.subtitle %><a href='https://github.com/jfroffice/beapy'>Beapy BETA</a>.</p>
-    </section>
+      <p class="subtitle"><%= t.subtitle %><a href='https://github.com/jfroffice/beapy'>Beapy BETA</a>.</p>
+    </header>
     <section class="content">
       <section class="article">
         <header class="current"></header>
