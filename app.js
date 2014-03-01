@@ -23,7 +23,8 @@ if ('development' !== app.get('env')) {
     maxAge = 2592000000; //30 * 24 * 60 * 60 * 1000;
 }
 
-app.use(express.bodyParser());
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 
