@@ -1,0 +1,14 @@
+{
+	"author": "jfroffice",
+	"state": "published",
+	"date": "01/03/2014",
+	"tags": ["NodeJS", "Grunt"],
+	"lang": {
+		"fr": {
+			"title": "Grunt par la pratique"
+		},
+		"en": {
+			"title": "Front End Stack using Grunt"
+		}
+	}
+}
