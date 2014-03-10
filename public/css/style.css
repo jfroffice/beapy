@@ -226,4 +226,8 @@ display: none;
 	.sidebar {
 		font-size: 13px;
 	}
+
+	.sidebar nav li {
+		padding: 8px 6px;
+	}
 }

@@ -8,7 +8,7 @@ L'installation de Grunt nécessite [NodeJS](http://nodejs.org/)
 Installation
 ============
 
-Créer un répertoire et exécuter la commande suivante en vous plaçant dans le répertoire
+Créer un répertoire et exécuter à l'intérieur la commande suivante
 
 ```javascript
 npm install grunt-cli -g
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
 }
 ```
 
-L'exécution de la commande __grunt__ est maintenant un succès.
+L'exécution de la commande __grunt__ est maintenant en succès.
 
 ```javascript
 > grunt
@@ -80,7 +80,7 @@ Plugins
 
 Grunt possède beaucoup de [plugins](http://gruntjs.com/plugins).
 
-Chaque plugin permet de répondre à une tâche bien précise, ils peuvent être combiner.
+Chaque plugin permet d'effectuer une tâche bien précise. Ces tâches peuvent être combiner.
 
 grunt-contrib-connect
 ---------------------
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
 			server: {
 		    	options: {
 		        	port: 7000,
-		        	keepalive: true		        
+		        	keepalive: true
 		      	}
 		    }
 		}
@@ -167,7 +167,7 @@ module.exports = function(grunt) {
         	}
         }
 	});
-	
+
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 
@@ -270,7 +270,7 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 		    	options: {
-		        	port: 7000		        	   
+		        	port: 7000
 		      	}
 		    }
 		},
@@ -307,7 +307,7 @@ module.exports = function(grunt) {
         		options: {
 			      livereload: true,
 			    }
-        	}        	
+        	}
         }
 	});
 
@@ -322,7 +322,7 @@ module.exports = function(grunt) {
 
 PS: n'oublier pas de désactiver le __livereload__ de connect, c'est la tâche watch qui va se charger de faire le travail.
 
-Ajouter ensuite dans votre page, le code de la websocket qui va permettre de notifier le navigateur lorsque votre code a changé.
+Ajouter ensuite dans votre page, le code de la websocket qui va permettre de gérer le livereload.
 
 ```javascript
 <script>document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
@@ -336,7 +336,7 @@ Running "watch" task
 waiting...
 ```
 
-Connecter vous à l'adresse http://127.0.0.1:7000
+Connecter vous à l'adresse suivante: http://127.0.0.1:7000
 
 Changer ensuite votre feuille de style.
 
