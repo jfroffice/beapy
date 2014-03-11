@@ -31,6 +31,36 @@ module.exports = function(grunt) {
                 dest: 'public/dist/<%= pkg.name %>.min.css'
             }
         },
+        imagemin: {                          // Task
+           /* static: {                          // Target
+              options: {                       // Target options
+                optimizationLevel: 3,
+                progressive: true
+              },
+              files: {                         // Dictionary of files
+                'public/md/dist/*.jpg': 'public/md/img/*.jpg'
+              }
+            },*/
+            dynamic: {
+              options: {                       // Target options
+                optimizationLevel: 3,
+                progressive: true
+              },                         // Another target
+              files: [{
+                expand: true,                  // Enable dynamic expansion
+                cwd: 'public/md/img/',                   // Src matches are relative to this path
+                src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                dest: 'public/md/dist/'                  // Destination path prefix
+              }]
+            }
+        },
+        copy: {
+          main: {
+            cwd: 'public/md/dist/',
+            src: ['**'],
+            dest: 'public/md/img/'
+          },
+        },
         jshint: {
             all: ['public/js/main.js'],
             options: {
@@ -46,23 +76,24 @@ module.exports = function(grunt) {
                 eqnull: true,
                 browser: true
             }
-        },
+        }/*,
         jsbeautifier: {
           files : ['public/js/*.js']
-        }
+        }*/
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-jsbeautifier');
+   // grunt.loadNpmTasks('grunt-jsbeautifier');
+
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task.
-    grunt.registerTask('format', ['jshint', 'jsbeautifier']);
+    grunt.registerTask('format', ['jshint', 'imagemin', 'copy']);
 
     grunt.registerTask('default', ['format', 'concat', 'uglify', 'cssmin']);
-
-    grunt.registerTask('server', ['express']);
 };
