@@ -45,7 +45,7 @@ function isFr(req) {
     if (headers) {
         var lang = headers.split(',');
         if (lang && lang.length > 0) {
-            if (lang[0].indexOf('fr') != -1) {
+            if (lang[0].indexOf('fr') !== -1) {
                 return true;
             }
         }
@@ -59,9 +59,6 @@ app.get('/', function(req, res) {
 	var lang = isFr(req) ? 'fr' : 'en';
 
 	data.getFiles(function(files) {
-
-		console.log(files);
-
 		res.render('index', {
 			env: app.get('env'),
 			lang: lang,
@@ -70,9 +67,7 @@ app.get('/', function(req, res) {
 		});
 	});
 });
-/*
-app.get('/data', data.browse);
-*/
+
 app.get('/md/:file', function(req, res) {
 
 	var file = req.params.file,
