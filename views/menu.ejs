@@ -1,0 +1,9 @@
+<nav class="menu">
+	<ul>
+		<% for (var i = 0; i < locals.files.length; i++) { %>
+			<% var file = files[i]; %>
+			<% console.log(file); %>
+			<li><a class="md" data-date="<%= file.data.date %>" data-tags="<%= file.data.tags %>" data-name="<%= file.name %>" href="#<%= file.name %>"><%= file.data.lang[locals.lang].title %></a>
+		<% } %>
+	</ul>
+</nav>

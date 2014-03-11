@@ -2,8 +2,8 @@ var disqus_shortname = 'jfroffice';
 
 (function($, Prism, DISQUS, history, LANG, undefined) {
 
-    var _commentLoaded = true,
-        _suffixe = (LANG === 'en') ? '.en' : '',
+    var TITLE = 'CodeMoods - ',
+        _commentLoaded = true,
         _name;
 
     function setName(name) {
@@ -12,12 +12,11 @@ var disqus_shortname = 'jfroffice';
         }
 
         _name = name;
-        history.pushState({
-            state: name
-        }, name, '/#' + name);
+        document.title = TITLE + name;
+        history.pushState({ state: name }, name, '/#' + name);
     }
 
-    function load(files, name, cb) {
+    function load(name, cb) {
 
         $.ajax({
             url: './md/' + name,
@@ -30,19 +29,23 @@ var disqus_shortname = 'jfroffice';
             }
         });
 
-        var meta = getMeta(files, name);
+        var $cur = $('.menu .md[href="#' + name + '"]'),
+            title = $cur.html(),
+            date = $cur.data('date'),
+            tags = $cur.data('tags').split(',');
+
+        $('.menu li').removeClass('selected');
+        $cur.parent().addClass('selected');
 
         setName(name);
-        document.title = 'CodeMoods - ' + name.replace('.md', '');
-        var header = renderHeader(meta.lang[LANG].title, formatDate(meta.date), meta.tags);
-        $('header.current').html(header);
+        $('header.current').html(renderHeader(title, date, tags));
     }
 
     function renderHeader(title, date, tags) {
         var tmp = '<div class="meta-head">';
         tmp += '<div class="date">' + date + '</div><ul class="tags">';
 
-        for (var i = 0; i < tags.length; i++) {
+        for (var i=0; i < tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
@@ -87,19 +90,11 @@ var disqus_shortname = 'jfroffice';
         }
     }
 
-    function getMeta(files, name) {
-        for (var i = 0; i < files.length; i++) {
-            if (files[i].name === name) {
-                return files[i].data;
-            }
-        }
-    }
-
-    function loadArticle(files, name) {
+    function loadArticle(name) {
 
         $('.sidebar').addClass('sidebar--clicked');
 
-        load(files, name, function(data) {
+        load(name, function(data) {
 
             $('.content article').html(data);
 
@@ -110,27 +105,8 @@ var disqus_shortname = 'jfroffice';
         });
     }
 
-    function renderMenu(files, newName) {
-        var tmp = '<ul>';
-
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            if (file.name !== newName) {
-                tmp += '<li><a class="md" href="#' + file.name + '">' + file.data.lang[LANG].title + '</a>';
-            }
-        }
-
-        return tmp + '</ul>';
-    }
-
     function init(name) {
-        $.get('./data', function(files) {
-
-            name = name || files[0].name;
-            $('.menu').html(renderMenu(files, name));
-
-            loadArticle(files, name);
-        });
+        loadArticle(name || $('.menu li:first-child .md').data('name'));
     }
 
     // loading disqus comment only if user go at bottom of page

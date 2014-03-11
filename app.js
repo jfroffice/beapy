@@ -16,7 +16,7 @@ var express = require('express'),
 			'disqus': 'comments powered by '
 		}
 	};
-	
+
 marked.setOptions({
 	langPrefix: 'language-'
 });
@@ -58,15 +58,21 @@ app.get('/', function(req, res) {
 
 	var lang = isFr(req) ? 'fr' : 'en';
 
-	res.render('index', {
-		env: app.get('env'),
-		lang: lang,
-		t: TRANSLATE[lang]
+	data.getFiles(function(files) {
+
+		console.log(files);
+
+		res.render('index', {
+			env: app.get('env'),
+			lang: lang,
+			files: files,
+			t: TRANSLATE[lang]
+		});
 	});
 });
-
+/*
 app.get('/data', data.browse);
-
+*/
 app.get('/md/:file', function(req, res) {
 
 	var file = req.params.file,
@@ -84,11 +90,11 @@ app.get('/md/:file', function(req, res) {
 		res.set('Cache-Control', 'no-cache');
 	}
 
-	if (data) {			
-		res.send(marked(data));	
+	if (data) {
+		res.send(marked(data));
 	} else {
 		res.send(404, 'Sorry, we cannot find that!')
-	}	
+	}
 });
 
 http.createServer(app).listen(app.get('port'), function() {

@@ -3,8 +3,7 @@ var path = require("path"),
 	_ = require('lodash'),
 	root = path.join(__dirname, '../public/md');
 
-exports.browse = function(req, res) {
-
+function getFiles(cb) {
 	var files = [];
 
 	readdirp({
@@ -20,6 +19,14 @@ exports.browse = function(req, res) {
 			return e.data.state == 'published';
 		});
 
+		cb && cb(files);
+	});	
+}
+
+exports.getFiles = getFiles;
+
+exports.browse = function(req, res) {
+	getFiles(function(files) {
 		res.send(files);
 	});	
 };

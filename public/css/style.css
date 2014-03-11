@@ -71,7 +71,10 @@ display: none;
 border-radius: 2px;
 padding: 9px 12px;
 color: #EEE;
+}
 
+.sidebar nav li.selected {
+display: none;
 }
 
 .sidebar nav li .md:hover {
@@ -188,8 +191,8 @@ display: none;
 	}
 
 	.sidebar nav ul {
-		margin-bottom: 0;	
-	}	
+		margin-bottom: 0;
+	}
 
 	.sidebar nav li {
 		margin: 0;
