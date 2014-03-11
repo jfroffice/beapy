@@ -13,7 +13,9 @@ var disqus_shortname = 'jfroffice';
 
         _name = name;
         document.title = TITLE + name;
-        history.pushState({ state: name }, name, '/#' + name);
+        history.pushState({
+            state: name
+        }, name, '/#' + name);
     }
 
     function load(name, cb) {
@@ -45,7 +47,7 @@ var disqus_shortname = 'jfroffice';
         var tmp = '<div class="meta-head">';
         tmp += '<div class="date">' + date + '</div><ul class="tags">';
 
-        for (var i=0; i < tags.length; i++) {
+        for (var i = 0; i < tags.length; i++) {
             tmp += '<li><span>' + tags[i] + '</span></li>';
         }
 
