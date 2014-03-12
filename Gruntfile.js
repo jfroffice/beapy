@@ -32,26 +32,17 @@ module.exports = function(grunt) {
             }
         },
         imagemin: {                          // Task
-           /* static: {                          // Target
-              options: {                       // Target options
-                optimizationLevel: 3,
-                progressive: true
-              },
-              files: {                         // Dictionary of files
-                'public/md/dist/*.jpg': 'public/md/img/*.jpg'
-              }
-            },*/
             dynamic: {
-              options: {                       // Target options
-                optimizationLevel: 3,
-                progressive: true
-              },                         // Another target
-              files: [{
-                expand: true,                  // Enable dynamic expansion
-                cwd: 'public/md/img/',                   // Src matches are relative to this path
-                src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-                dest: 'public/md/dist/'                  // Destination path prefix
-              }]
+                options: {
+                    optimizationLevel: 4,
+                    progressive: true
+                },              
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: 'public/md/img/',                   // Src matches are relative to this path
+                    src: ['**/*.{jpg}'],   // Actual patterns to match
+                    dest: 'public/md/dist/'                  // Destination path prefix
+                }]
             }
         },
         copy: {
