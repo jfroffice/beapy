@@ -31,17 +31,30 @@ module.exports = function(grunt) {
                 dest: 'public/dist/<%= pkg.name %>.min.css'
             }
         },
-        imagemin: {                          // Task
-            dynamic: {
+        imagemin: {
+            png: {
+                options: {
+                    optimizationLevel: 4                    
+                },              
+                files: [{
+                    expand: true,               
+                    cwd: 'public/md/img/',      
+                    src: ['**/*.png'],   
+                    dest: 'public/md/dist/',
+                    ext: '.png' 
+                }]
+            },                       
+            jpg: {
                 options: {
                     optimizationLevel: 4,
                     progressive: true
                 },              
                 files: [{
-                    expand: true,                  // Enable dynamic expansion
-                    cwd: 'public/md/img/',                   // Src matches are relative to this path
-                    src: ['**/*.{jpg}'],   // Actual patterns to match
-                    dest: 'public/md/dist/'                  // Destination path prefix
+                    expand: true,               
+                    cwd: 'public/md/img/',      
+                    src: ['**/*.jpg'],   
+                    dest: 'public/md/dist/',
+                    ext: '.jpg' 
                 }]
             }
         },
@@ -86,6 +99,5 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('format', ['jshint', 'imagemin', 'copy']);
-
     grunt.registerTask('default', ['format', 'concat', 'uglify', 'cssmin']);
 };
