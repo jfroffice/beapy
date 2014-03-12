@@ -33,11 +33,11 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
 	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 } else {
-	app.use(express.static(path.join(__dirname, 'public')), { maxAge: 2592000000 }); //30 * 24 * 60 * 60 * 1000;
+	app.use(express.static(path.join(__dirname, 'public'), { maxAge: 30 * 86400000 }));
 }
 
 function isFr(req) {
@@ -54,7 +54,13 @@ function isFr(req) {
     return false;
 }
 
+function setCache(res, hour) {
+	res.header('Cache-Control', 'max-age=' + hour * 3600 + ', must-revalidate'); // 12 * 60 * 60
+}
+
 app.get('/', function(req, res) {
+
+	setCache(res, 12);
 
 	var lang = isFr(req) ? 'fr' : 'en';
 
@@ -69,6 +75,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/md/:file', function(req, res) {
+
+	setCache(res, 12);
 
 	var file = req.params.file,
 		ext = isFr(req) ? '.md' : '.en.md',

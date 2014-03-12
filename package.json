@@ -10,7 +10,8 @@
     "ejs": "*",
     "marked": "*",
     "readdirp": "*",
-    "lodash": "*"
+    "lodash": "*",
+    "express-cache-control": "^1.0.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
