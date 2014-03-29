@@ -1,7 +1,7 @@
+All of these commands should be mainly executed as __root__ or with __sudo__ command.
+
 Getting your ip address
 -----------------------
-
-Mac & Linux
 ```javascript
 # ifconfig
 ```
@@ -33,7 +33,6 @@ Windows
 Gateway
 -------
 
-Mac & Linux
 ```javascript
 # netstat -nr
 # route
@@ -46,7 +45,6 @@ Windows
 Beyond the router
 -----------------
 
-Mac & Linux
 ```javascript
 # traceroute -q 1 -n 1.2.3.4
 
@@ -58,15 +56,12 @@ Windows
 
 Getting your ip address
 -----------------------
-Mac & Linux
 ```javascript
 # curl ipinfo.io/ip
 ```
 
 DNS
 ---
-
-Mac & Linux
 ```javascript
 # nslookup www.google.fr
 # nslookup -type=ns www.google.fr
@@ -76,13 +71,23 @@ Mac & Linux
 
 Checking your server
 --------------------
-Mac & Linux
 ```javascript
 # netstat -tlnp
 ```
 
+System Logs
+-----------
+```javascript
+# zcat -f /var/log/* | grep 'May 5' | less
+```
+
+Find in Files
+-------------
+```javascript
+find . | xargs grep 'string'
+```
+
 References
 ----------
-- Smashing Book 4 - (How to Fix the Web by Paul Tero)
-- DnsTool.ch / yougetsignal
-
+- [Smashing Book 4](https://shop.smashingmagazine.com/smashing-book-4-ebooks.html) - (How to Fix the Web by [Paul Tero](http://coding.smashingmagazine.com/author/paul-tero/))
+- [DnsTool.ch](http://www.dnstools.ch/) / [yougetsignal](http://www.yougetsignal.com/)

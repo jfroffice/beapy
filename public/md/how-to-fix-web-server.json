@@ -5,10 +5,10 @@
 	"tags": ["Linux", "Network"],
 	"lang": {
 		"fr": {
-			"title": "Guide de survie de diagnostic réseaux"
+			"title": "Kit de survie pour réparer votre site web"
 		},
 		"en": {
-			"title": "Essential Command Line Tools for Network"
+			"title": "Bash Command - How to fix your Web Server"
 		}
 	}
 }
