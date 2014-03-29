@@ -1,0 +1,14 @@
+{
+	"author": "jfroffice",
+	"state": "published",
+	"date": "28/03/2014",
+	"tags": ["Linux", "Network"],
+	"lang": {
+		"fr": {
+			"title": "Guide de survie de diagnostic réseaux"
+		},
+		"en": {
+			"title": "Essential Command Line Tools for Network"
+		}
+	}
+}

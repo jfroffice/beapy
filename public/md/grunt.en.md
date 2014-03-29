@@ -320,7 +320,7 @@ module.exports = function(grunt) {
 }
 ```
 
-Do not forget to disable __ livereload__ to connect, it is the task watch which will be responsible to do the work. 
+Do not forget to disable __ livereload__ to connect, the task __watch__ which will be responsible to do the work. 
 
 Then add in your page, the code that will allow websocket manage livereload.
 

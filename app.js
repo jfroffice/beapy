@@ -55,7 +55,7 @@ function isFr(req) {
 }
 
 function setCache(res, hour) {
-	res.header('Cache-Control', 'max-age=' + hour * 3600 + ', must-revalidate'); // 12 * 60 * 60
+	res.header('Cache-Control', 'max-age=' + hour * 3600 + ', must-revalidate'); // 60 * 60
 }
 
 app.get('/', function(req, res) {
@@ -95,11 +95,11 @@ app.get('/md/:file', function(req, res) {
 
 	if (data) {
 		res.send(marked(data));
-	} else {
+	} else {		
 		res.send(404, 'Sorry, we cannot find that!')
 	}
 });
 
-http.createServer(app).listen(app.get('port'), function() {
+http.createServer(app).listen(app.get('port'), '127.0.0.1', function() {
 	console.log('Express server listening on port ' + app.get('port') + ' in ' + app.get('env'));
 });
