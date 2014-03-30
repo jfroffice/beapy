@@ -81,14 +81,10 @@ module.exports = function(grunt) {
                 eqnull: true,
                 browser: true
             }
-        }/*,
-        jsbeautifier: {
-          files : ['public/js/*.js']
-        }*/
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
-   // grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-copy');
