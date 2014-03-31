@@ -2,7 +2,7 @@ Approche simple
 ---------------
 Pour gérer cet évènement, vous déclarez un listener sur l'évènement __resize__ (ci-dessous avec jQuery)
 ```javascript
-$(window).on('trueresize', function() {
+$(window).on('resize', function() {
     // traitement
 });
 ```
