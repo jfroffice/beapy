@@ -2,9 +2,12 @@
 	"title": "OpenSource Commmunity",
 	"author": "jfroffice",
 	"state": "draft",
-	"date": "Mon May 3 2013 20:10:08 GMT+0200 (Paris, Madrid (heure d’été))",
+	"date": "03/05/2013",
 	"tags": ["OpenSource"],
-	"lang": {
-		"fr_FR": "Communauté OpenSource"
+	"fr": {
+		"title": "Communauté OpenSource"
+	},
+	"en": {
+		"title": "OpenSource Community"
 	}
 }

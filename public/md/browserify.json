@@ -3,12 +3,10 @@
 	"state": "published",
 	"date": "26/01/2014",
 	"tags": ["NodeJS", "Browser"],
-	"lang": {
-		"fr": {
-			"title": "Introduction à Browserify"
-		},
-		"en": {
-			"title": "How to start with Browserify ?"
-		}
+	"fr": {
+		"title": "Introduction à Browserify"
+	},
+	"en": {
+		"title": "How to start with Browserify ?"
 	}
 }

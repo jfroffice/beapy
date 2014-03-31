@@ -2,13 +2,11 @@
 	"author": "jfroffice",
 	"state": "published",
 	"date": "28/03/2014",
-	"tags": ["Linux", "Network"],
-	"lang": {
-		"fr": {
-			"title": "Kit de survie pour réparer votre site web"
-		},
-		"en": {
-			"title": "Bash Command - How to fix your Web Server"
-		}
+	"tags": ["Linux", "Network"],	
+	"fr": {
+		"title": "Kit de survie pour réparer votre site web"
+	},
+	"en": {
+		"title": "Bash Command - How to fix your Web Server"
 	}
 }

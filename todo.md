@@ -1,4 +1,3 @@
-- remonter le niveau de lang.fr à fr et en
 - masquer avant l'affiche l'article qui sera affiché par défaut au chargement afin d'éviter un clignotement
 
 - tentative de suppression de Zepto

@@ -3,12 +3,10 @@
 	"state": "published",
 	"date": "01/08/2013",
 	"tags": ["jQuery"],
-	"lang": {
-		"fr": {
-			"title": "Méfiez-vous de l'évènement Resize"
-		},
-		"en": {
-			"title": "Beware of the Resize event"
-		}
+	"fr": {
+		"title": "Méfiez-vous de l'évènement Resize"
+	},
+	"en": {
+		"title": "Beware of the Resize event"
 	}
 }

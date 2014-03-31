@@ -3,12 +3,10 @@
 	"state": "published",
 	"date": "01/03/2014",
 	"tags": ["NodeJS", "Grunt"],
-	"lang": {
-		"fr": {
-			"title": "Introduction à Grunt et au LiveReload"
-		},
-		"en": {
-			"title": "Magic Livereload with Grunt"
-		}
+	"fr": {
+		"title": "Introduction à Grunt et au LiveReload"
+	},
+	"en": {
+		"title": "Magic Livereload with Grunt"
 	}
 }
