@@ -41,6 +41,7 @@ var disqus_shortname = 'jfroffice';
 
         setName(name);
         $('header.current').html(renderHeader(title, date, tags));
+        $('.menu').addClass('menu--show');
     }
 
     function renderHeader(title, date, tags) {
