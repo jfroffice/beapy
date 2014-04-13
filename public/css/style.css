@@ -138,16 +138,16 @@ font-size: 15px;
 text-shadow: 1px 1px 2px #333;
 }
 
-header.current ul {
+header ul {
 float: left;
 list-style-type: none;
 }
 
-header.current ul.tags {
+header ul.tags {
 margin-top: 9px;
 }
 
-header.current ul.tags li {
+header ul.tags li {
 color: #fff;
 cursor: pointer;
 float: left;
@@ -155,7 +155,7 @@ margin-right: 10px;
 font-size: 15px;
 }
 
-header.current ul.tags li span {
+header ul.tags li span {
 background-color: #68c241;
 border-radius: 2px;
 padding: 9px 12px;

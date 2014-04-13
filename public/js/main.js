@@ -20,18 +20,7 @@ var disqus_shortname = 'jfroffice';
 
     function load(name, cb) {
 
-        $.ajax({
-            url: './md/' + name,
-            type: 'GET',
-            success: function(data) {
-                cb(data);
-            },
-            error: function() {
-                location.href = '/';
-            }
-        });
-
-        var $cur = $('.menu .md[href="#' + name + '"]'),
+         var $cur = $('.menu .md[href="#' + name + '"]'),
             title = $cur.html(),
             date = $cur.data('date'),
             tags = $cur.data('tags').split(',');
@@ -40,8 +29,26 @@ var disqus_shortname = 'jfroffice';
         $cur.parent().addClass('selected');
 
         setName(name);
-        $('header.current').html(renderHeader(title, date, tags));
+        
         $('.menu').addClass('menu--show');
+
+        $('.content .article').hide();
+
+        if ($('.content .article[data-name="' + name + '"]').length) {            
+            $('.content .article[data-name="' + name + '"]').show();
+        } else {
+            $.ajax({
+                url: './md/' + name,
+                type: 'GET',
+                success: function(data) {
+                    cb(data);
+                    $('.article[data-name="' + name + '"] > header').html(renderHeader(title, date, tags));
+                },
+                error: function() {
+                    location.href = '/';
+                }
+            });
+        }
     }
 
     function renderHeader(title, date, tags) {
@@ -59,12 +66,8 @@ var disqus_shortname = 'jfroffice';
         var cNumber = +argumentForCoercion,
             value = 0;
 
-        if (cNumber !== 0 && isFinite(cNumber)) {
-            if (cNumber >= 0) {
-                value = Math.floor(cNumber);
-            } else {
-                value = Math.ceil(cNumber);
-            }
+        if (cNumber !== 0 && isFinite(cNumber)) {   
+            value = (cNumber >= 0) ? Math.floor(cNumber) : Math.ceil(cNumber);
         }
 
         return value;
@@ -98,8 +101,10 @@ var disqus_shortname = 'jfroffice';
         $('.sidebar').addClass('sidebar--clicked');
 
         load(name, function(data) {
-
-            $('.content article').html(data);
+               
+            var $section = $('<section class="article"><header></header><article></article></section>');
+            $section.data('name', name).find('article').html(data);
+            $('.content').append($section);
 
             Prism.highlightAll();
 
@@ -114,7 +119,10 @@ var disqus_shortname = 'jfroffice';
 
     // loading disqus comment only if user go at bottom of page
     $(window).scroll(function() {
-        if (!_commentLoaded && ($(window).scrollTop() + $(window).height() > $(document).height() - 300)) {
+
+        var scrolltop = $(window).scrollTop();
+
+        if (!_commentLoaded && (scrolltop + $(window).height() > $(document).height() - 300)) {
 
             _commentLoaded = true;
 
@@ -127,6 +135,8 @@ var disqus_shortname = 'jfroffice';
 
             $('.comment').show();
         }
+        
+        $('.sidebar').toggle(scrolltop < 300);        
     });
 
     function updateDisqus(name) {
