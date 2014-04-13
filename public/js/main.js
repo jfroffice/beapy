@@ -2,7 +2,7 @@ var disqus_shortname = 'jfroffice';
 
 (function($, Prism, DISQUS, history, LANG, undefined) {
 
-    var TITLE = 'CodeMoods - ',
+    var TITLE = 'Coding Moods - ',
         _commentLoaded = true,
         _name;
 
@@ -149,8 +149,6 @@ var disqus_shortname = 'jfroffice';
         $(this).parent().toggleClass('sidebar--clicked');
     });
 
-    if (!location.hash) {
-        init();
-    }
-
+    init( location.hash ? location.hash.slice(1) : null);
+    
 })(window.Zepto, window.Prism, window.DISQUS, window.history, window.LANG);

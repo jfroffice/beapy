@@ -1,0 +1,12 @@
+{
+	"author": "jfroffice",
+	"state": "published",
+	"date": "31/03/2014",
+	"tags": ["NodeJS", "Gulp"],	
+	"fr": {
+		"title": "Gulp.js de la théorie à la pratique"
+	},
+	"en": {
+		"title": "Gulp.js are you ready ?"
+	}
+}

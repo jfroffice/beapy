@@ -28,9 +28,9 @@ var module = require('./module');
 module.doSomething();	
 ```
 
-On utile le mot-clef __exports__ pour exposer une variable (en l'occurence une fonction dans notre cas) et la méthode __require()__ pour importer une dépendance.
+On utile le mot-clef __exports__ pour exposer une variable et la méthode __require()__ pour importer une dépendance.
 
-On génére le fichier __bundle.js__ qui rassemblera tout votre code en utilisant la commande __browserify__.
+On génére le fichier __bundle.js__ qui rassemblera tout notre code en utilisant la commande __browserify__.
 
 ```javascript
 browserify main.js > bundle.js
