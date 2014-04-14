@@ -84,27 +84,24 @@ cursor: pointer;
 display: none;
 }
 
-.menu li .md {
+.md {
 border-radius: 2px;
 padding: 9px 12px;
 color: #EEE;
+background-color: #36afe2;
+text-decoration: none;
 }
 
 .menu li.selected {
 display: none;
 }
 
-.menu li .md:hover {
+.md:hover {
 color: #FFF;
 }
 
 a {
 color: #00B7FF;
-}
-
-.menu .md {
-background-color: #36afe2;
-text-decoration: none;
 }
 
 .menu {
@@ -224,7 +221,7 @@ display: none;
 		padding: 10px;
 	}
 
-	.sidebar nav li .md {
+	.md {
 		color: #EEE;
 	}
 
@@ -232,7 +229,7 @@ display: none;
 		margin-right: 50px;
 	}
 
-	.sidebar nav li .md:hover {
+	.md:hover {
 		color: #FFF;
 	}
 
@@ -259,8 +256,20 @@ display: none;
 		font-size: 13px;
 	}
 
+	.sidebar nav ul {
+		margin-top: 4px;
+	}
+
 	.sidebar nav li {
 		line-height: 24px;
-		padding: 8px 6px;
+		padding: 6px;
+	}
+
+	.sidebar nav.menu {
+		margin-right: 0;
+	}
+
+	.md {
+		padding: 5px;
 	}
 }
