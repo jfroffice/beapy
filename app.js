@@ -3,6 +3,8 @@ var express = require('express'),
 	data = require('./service/data'),
 	marked = require('marked'),
 	path = require('path'),
+	memoize = require('memoizee'),
+	MAX_AGE = 5000,
 	fs = require('fs'),
 	DIR = __dirname + '/public/md/',
 	app = express(),
@@ -58,20 +60,28 @@ function setCache(res, hour) {
 	res.header('Cache-Control', 'max-age=' + hour * 3600 + ', must-revalidate'); // 60 * 60
 }
 
+function getFiles(cb) {
+	data.getFiles(function(files) {
+		cb && cb(null, files);
+	});
+}
+
+var memoized = memoize(getFiles, { async: true, maxAge: MAX_AGE });
+
 app.get('/', function(req, res) {
 
 	setCache(res, 12);
 
 	var lang = isFr(req) ? 'fr' : 'en';
 
-	data.getFiles(function(files) {
-		res.render('index', {
+ 	memoized(function(err, files) {
+        res.render('index', {
 			env: app.get('env'),
 			lang: lang,
 			files: files,
 			t: TRANSLATE[lang]
 		});
-	});
+    });
 });
 
 app.get('/md/:file', function(req, res) {
@@ -95,7 +105,7 @@ app.get('/md/:file', function(req, res) {
 
 	if (data) {
 		res.send(marked(data));
-	} else {		
+	} else {
 		res.send(404, 'Sorry, we cannot find that!')
 	}
 });

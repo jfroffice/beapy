@@ -11,7 +11,8 @@
     "ejs": "*",
     "marked": "*",
     "readdirp": "*",
-    "lodash": "*"
+    "lodash": "*",
+    "memoizee": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
